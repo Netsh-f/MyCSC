@@ -38,7 +38,7 @@ public class Register extends Function {
                 } else if (password.equals(confirmPassword) == false) {
                     System.out.println("passwords inconsistent");
                 } else {
-                    System.out.println("register succes");
+                    System.out.println("register success");
                     if (Professor.isTeacher(id)) {
                         Data.addUser(new Professor(id, firstName, lastName, emailAddress, password));
                     } else {
