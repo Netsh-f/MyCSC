@@ -7,6 +7,23 @@ public class User {
     private String name;//姓名
     private String emailAddress;
     private String password;
+    private String type;
+
+    @Override
+    public String toString() {
+        return "Name: " + firstName + " " + lastName + "\n" +
+                "ID: " + id + "\n" +
+                "Type: " + type + "\n" +
+                "Email: " + emailAddress;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getId() {
         return id;
@@ -36,18 +53,18 @@ public class User {
 
     public static boolean isIdLegal(String id) {
         //19375030 19375168 BY2215201 SY2021118
-        return Teacher.isTeacher(id) || Student.isStudent(id);
+        return Professor.isTeacher(id) || Student.isStudent(id);
     }
 
     public static boolean isNameLegal(String id) {
         return id.matches("\\b[A-Z][a-z]{0,19}\\b");
     }
 
-    public static boolean isEmailAddressLegal(String id){
+    public static boolean isEmailAddressLegal(String id) {
         return id.matches("\\w+@\\w+(\\.\\w+)+");
     }
 
-    public static boolean isPasswordLegal(String id){
+    public static boolean isPasswordLegal(String id) {
         return id.matches("([A-Z]|[a-z])\\w{7,15}");
     }
 }

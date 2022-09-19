@@ -10,6 +10,8 @@ public class Quit extends Function {
         if(parameterList.isEmpty()){
             System.out.println("----- Good Bye! -----");
             System.exit(0);
+        }else{
+            System.out.println("arguments illegal");
         }
     }
 }

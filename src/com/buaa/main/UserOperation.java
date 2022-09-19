@@ -1,10 +1,7 @@
 package com.buaa.main;
 
 import com.buaa.data.User;
-import com.buaa.function.Function;
-import com.buaa.function.Login;
-import com.buaa.function.Quit;
-import com.buaa.function.Register;
+import com.buaa.function.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,8 +37,8 @@ public class UserOperation {
         cmdMap.put("QUIT", Quit.quit);
         cmdMap.put("register", Register.register);
         cmdMap.put("login", Login.login);
-//        cmdMap.put("printinfo", 203);
-//        cmdMap.put("logout", 204);
+        cmdMap.put("printInfo", PrintInfo.printInfo);
+        cmdMap.put("logout", Logout.logout);
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {
