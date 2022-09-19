@@ -1,4 +1,4 @@
-package com.buaa.main;
+import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
 import java.util.Scanner;
