@@ -51,6 +51,9 @@ public class User {
         this.name = this.lastName + this.firstName;
     }
 
+    public User() {
+    }
+
     public static boolean isIdLegal(String id) {
         //19375030 19375168 BY2215201 SY2021118
         return Professor.isTeacher(id) || Student.isStudent(id);

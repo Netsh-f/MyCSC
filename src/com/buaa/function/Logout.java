@@ -12,10 +12,10 @@ public class Logout extends Function {
         if (parameterList.size() != 0) {
             System.out.println("arguments illegal");
         } else {
-            if (UserOperation.getCurrentUser() == null) {
+            if (UserOperation.getCurrentUser() == UserOperation.getNoUser()) {
                 System.out.println("not logged in");
             } else {
-                UserOperation.setCurrentUser(null);
+                UserOperation.setCurrentUser(UserOperation.getNoUser());
                 System.out.println("Bye~");
             }
         }

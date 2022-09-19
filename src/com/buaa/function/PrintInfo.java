@@ -16,7 +16,7 @@ public class PrintInfo extends Function {
             System.out.println("arguments illegal");
         } else {
             User currentUser = UserOperation.getCurrentUser();
-            if (currentUser == null) {
+            if (currentUser == UserOperation.getNoUser()) {
                 System.out.println("login first");
             } else {
                 if (parameterList.size() == 0) {
@@ -27,8 +27,8 @@ public class PrintInfo extends Function {
                         System.out.println("permission denied");
                     } else if (User.isIdLegal(id) == false) {
                         System.out.println("user id illegal");
-                    } else if (Data.isIdExit(id) == false) {
-                        System.out.println("user id not exits");
+                    } else if (Data.isIdExist(id) == false) {
+                        System.out.println("user id not exist");
                     } else {
                         System.out.println(Data.getUser(id).toString());
                     }

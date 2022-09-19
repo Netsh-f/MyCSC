@@ -11,7 +11,12 @@ public class UserOperation {
     private static HashMap<String, Integer> userStateMap = new HashMap<String, Integer>();
     private static HashMap<String, Function> cmdMap = new HashMap<String, Function>();
 
-    private static User currentUser = null;
+    private static User noUser = new User();
+    private static User currentUser = noUser;
+
+    public static User getNoUser() {
+        return noUser;
+    }
 
     public static void setCurrentUser(User currentUser) {
         UserOperation.currentUser = currentUser;
@@ -21,7 +26,7 @@ public class UserOperation {
         return currentUser;
     }
 
-    public static void userInit(){
+    public static void userInit() {
         userStateMapInit();
         cmdMapInit();
     }
@@ -42,6 +47,12 @@ public class UserOperation {
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {
-        cmdMap.get(cmd).run(parameter);
+        if (cmd.matches("\\s*")) {
+            //do nothing
+        } else if (cmdMap.containsKey(cmd)) {
+            cmdMap.get(cmd).run(parameter);
+        } else {
+            System.out.println("command '" + cmd + "' not found");
+        }
     }
 }

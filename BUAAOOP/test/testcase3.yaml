@@ -1,0 +1,29 @@
+name: testcase1
+data:
+  - 
+    - register 17371111 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register 22371111 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register 21011111 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register 21431111 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register 19375030 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register 19375168 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register BY2215201 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - register SY2021118 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - user id illegal
+  - 
+    - QUIT
+    - ----- Good Bye! -----

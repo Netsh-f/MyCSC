@@ -18,7 +18,7 @@ public class Register extends Function {
         if (parameterList.size() != 6) {
             System.out.println("arguments illegal");
         } else {
-            if (UserOperation.getCurrentUser() == null) {
+            if (UserOperation.getCurrentUser() == UserOperation.getNoUser()) {
                 String id = parameterList.get(0);
                 String firstName = parameterList.get(1);
                 String lastName = parameterList.get(2);
@@ -27,7 +27,7 @@ public class Register extends Function {
                 String confirmPassword = parameterList.get(5);
                 if (User.isIdLegal(id) == false) {
                     System.out.println("user id illegal");
-                } else if (Data.isIdExit(id) == true) {
+                } else if (Data.isIdExist(id) == true) {
                     System.out.println("user id duplication");
                 } else if (User.isNameLegal(firstName) == false || User.isNameLegal(lastName) == false) {
                     System.out.println("user name illegal");

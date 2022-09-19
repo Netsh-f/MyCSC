@@ -1,5 +1,7 @@
 package com.buaa.data;
 
+import com.buaa.main.UserOperation;
+
 import java.util.ArrayList;
 
 public class Data {
@@ -9,7 +11,7 @@ public class Data {
         userArrayList.add(user);
     }
 
-    public static boolean isIdExit(String id) {
+    public static boolean isIdExist(String id) {
         for (User registeredUser : userArrayList) {
             if (registeredUser.getId().equals(id)) {
                 return true;
@@ -24,6 +26,6 @@ public class Data {
                 return registeredUser;
             }
         }
-        return null;
+        return UserOperation.getNoUser();
     }
 }
