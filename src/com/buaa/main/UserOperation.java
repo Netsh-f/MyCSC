@@ -1,5 +1,6 @@
 package com.buaa.main;
 
+import com.buaa.data.User;
 import com.buaa.function.Function;
 import com.buaa.function.Quit;
 import com.buaa.function.Register;
@@ -11,6 +12,16 @@ public class UserOperation {
     private static int userState;
     private static HashMap<String, Integer> userStateMap = new HashMap<String, Integer>();
     private static HashMap<String, Function> cmdMap = new HashMap<String, Function>();
+
+    private static User currentUser = null;
+
+    public static void setCurrentUser(User currentUser) {
+        UserOperation.currentUser = currentUser;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
 
     public static void userInit(){
         userStateMapInit();

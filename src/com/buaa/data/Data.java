@@ -8,4 +8,13 @@ public class Data {
     public static void addUser(User user) {
         userArrayList.add(user);
     }
+
+    public static boolean isIdDuplication(String id){
+        for (User registeredUser: userArrayList) {
+            if(registeredUser.getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

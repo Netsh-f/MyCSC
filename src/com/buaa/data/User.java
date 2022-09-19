@@ -8,6 +8,10 @@ public class User {
     private String emailAddress;
     private String password;
 
+    public String getId() {
+        return id;
+    }
+
     public User(String id, String firstName, String lastName, String emailAddress, String password) {
         this.id = id;
         this.firstName = firstName;
@@ -18,9 +22,20 @@ public class User {
         this.name = this.lastName + this.firstName;
     }
 
-    public boolean isIdLegal(String id){
+    public static boolean isIdLegal(String id) {
         //19375030 19375168 BY2215201 SY2021118
-        (\b[B,S]Y\d{7}\b)|\b((1[7-9])|(2[0-2])((0[1-9])|([1-3][0-9])|4[0-3])[1-6]\d{3})\b|(\b\d{5}\b)
-        boolean ret = id.matches("")
+        return Teacher.isTeacher(id) || Student.isStudent(id);
+    }
+
+    public static boolean isNameLegal(String id) {
+        return id.matches("\\b[A-Z][a-z]{0,19}\\b");
+    }
+
+    public static boolean isEmailAddressLegal(String id){
+        return id.matches("\\w+@\\w+(\\.\\w+)+");
+    }
+
+    public static boolean isPasswordLegal(String id){
+        return id.matches("([A-Z]|[a-z])\\w{7,15}");
     }
 }

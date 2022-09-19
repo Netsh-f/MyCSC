@@ -5,7 +5,7 @@ public class Teacher extends User{
         super(id, firstName, lastName, emailAddress, password);
     }
 
-    public boolean isTeacher(String id){
-
+    public static boolean isTeacher(String id){
+        return id.matches("\\b\\d{5}\\b");
     }
 }
