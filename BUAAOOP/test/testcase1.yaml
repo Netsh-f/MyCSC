@@ -1,0 +1,40 @@
+name: testcase1
+data:
+  - 
+    - register 19375030 Xinlei Bao 3499475017@qq.com a7ki7kibangbang a7ki7kibangbang
+    - register success
+  - 
+    - login 19375030 a7ki7kibangbang
+    - Hello Xinlei~
+  - 
+    - register 10086 Alex Herbert 10086@buaa.edu.cn 123 123
+    - already logged in
+  - 
+    - logout
+    - Bye~
+  - 
+    - register 10086 Alex Herbert 10086@buaa.edu.cn a12345678 a12345678
+    - register success
+  - 
+    - login 10086 a12345678
+    - Hello Professor Herbert~
+  - 
+    - printInfo
+    - |
+      Name: Alex Herbert
+      ID: 10086
+      Type: Professor
+      Email: 10086@buaa.edu.cn
+  - 
+    - printInfo 19375030
+    - |
+      Name: Xinlei Bao
+      ID: 19375030
+      Type: Student
+      Email: 3499475017@qq.com
+  - 
+    - logout
+    - Bye~
+  - 
+    - QUIT
+    - ----- Good Bye! -----
