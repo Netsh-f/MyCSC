@@ -12,6 +12,18 @@ public class User {
         return id;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public User(String id, String firstName, String lastName, String emailAddress, String password) {
         this.id = id;
         this.firstName = firstName;

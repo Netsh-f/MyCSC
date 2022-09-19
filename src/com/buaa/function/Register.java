@@ -1,6 +1,8 @@
 package com.buaa.function;
 
 import com.buaa.data.Data;
+import com.buaa.data.Student;
+import com.buaa.data.Teacher;
 import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
@@ -22,7 +24,7 @@ public class Register extends Function {
             String confirmPassword = parameterList.get(5);
             if (User.isIdLegal(id) == false) {
                 System.out.println("user id illegal");
-            } else if (Data.isIdDuplication(id) == true) {
+            } else if (Data.isIdExit(id) == true) {
                 System.out.println("user id duplication");
             } else if (User.isNameLegal(firstName) == false || User.isNameLegal(lastName) == false) {
                 System.out.println("user name illegal");
@@ -34,7 +36,11 @@ public class Register extends Function {
                 System.out.println("passwords inconsistent");
             } else {
                 System.out.println("register succes");
-                Data.addUser(new User(id, firstName, lastName, emailAddress, password));
+                if(Teacher.isTeacher(id)){
+                    Data.addUser(new Teacher(id, firstName, lastName, emailAddress, password));
+                }else{
+                    Data.addUser(new Student(id, firstName, lastName, emailAddress, password));
+                }
             }
         } else {
             System.out.println("already logged in");

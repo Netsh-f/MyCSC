@@ -9,12 +9,21 @@ public class Data {
         userArrayList.add(user);
     }
 
-    public static boolean isIdDuplication(String id){
-        for (User registeredUser: userArrayList) {
-            if(registeredUser.getId().equals(id)){
+    public static boolean isIdExit(String id) {
+        for (User registeredUser : userArrayList) {
+            if (registeredUser.getId().equals(id)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static User getUser(String id) {
+        for (User registeredUser : userArrayList) {
+            if (registeredUser.getId().equals(id)) {
+                return registeredUser;
+            }
+        }
+        return null;
     }
 }

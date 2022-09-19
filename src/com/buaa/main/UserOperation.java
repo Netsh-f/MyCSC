@@ -2,6 +2,7 @@ package com.buaa.main;
 
 import com.buaa.data.User;
 import com.buaa.function.Function;
+import com.buaa.function.Login;
 import com.buaa.function.Quit;
 import com.buaa.function.Register;
 
@@ -38,7 +39,7 @@ public class UserOperation {
     private static void cmdMapInit() {
         cmdMap.put("QUIT", Quit.quit);
         cmdMap.put("register", Register.register);
-//        cmdMap.put("login", 202);
+        cmdMap.put("login", Login.login);
 //        cmdMap.put("printinfo", 203);
 //        cmdMap.put("logout", 204);
     }
