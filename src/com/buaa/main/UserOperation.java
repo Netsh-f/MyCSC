@@ -26,7 +26,12 @@ public class UserOperation {
         return currentUser;
     }
 
-    public static void userInit() {
+//    public static void userInit() {
+//        userStateMapInit();
+//        cmdMapInit();
+//    }
+
+    static {
         userStateMapInit();
         cmdMapInit();
     }

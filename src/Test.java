@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Test {
     public static void main(String[] args) {
-        UserOperation.userInit();
+//        UserOperation.userInit();
         Scanner scanner = new Scanner(System.in);
         String command;
         String commandPattern = "[\\S]+";
