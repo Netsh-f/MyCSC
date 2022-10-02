@@ -9,7 +9,14 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class PrintInfo extends Function {
-    public static PrintInfo printInfo = new PrintInfo();
+    private static PrintInfo printInfo = new PrintInfo();
+
+    private PrintInfo() {
+    }
+
+    public static PrintInfo getInstance() {
+        return printInfo;
+    }
 
     @Override
     public void run(ArrayList<String> parameterList) {

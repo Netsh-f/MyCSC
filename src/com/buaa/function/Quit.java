@@ -3,7 +3,14 @@ package com.buaa.function;
 import java.util.ArrayList;
 
 public class Quit extends Function {
-    public static Quit quit = new Quit();
+    private static Quit quit = new Quit();
+
+    private Quit() {
+    }
+
+    public static Quit getInstance(){
+        return getInstance();
+    }
 
     @Override
     public void run(ArrayList<String> parameterList) {

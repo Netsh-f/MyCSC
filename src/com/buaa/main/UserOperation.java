@@ -26,29 +26,17 @@ public class UserOperation {
         return currentUser;
     }
 
-//    public static void userInit() {
-//        userStateMapInit();
-//        cmdMapInit();
-//    }
-
     static {
-        userStateMapInit();
         cmdMapInit();
     }
 
-    private static void userStateMapInit() {
-        userStateMap.put("notLoggedIn", 101);
-        userStateMap.put("student", 102);
-        userStateMap.put("teacher", 103);
-        userState = userStateMap.get("notLoggedIn");
-    }
-
     private static void cmdMapInit() {
-        cmdMap.put("QUIT", Quit.quit);
-        cmdMap.put("register", Register.register);
-        cmdMap.put("login", Login.login);
-        cmdMap.put("printInfo", PrintInfo.printInfo);
-        cmdMap.put("logout", Logout.logout);
+        cmdMap.put("QUIT", Quit.getInstance());
+        cmdMap.put("register", Register.getInstance());
+        cmdMap.put("login", Login.getInstance());
+        cmdMap.put("printInfo", PrintInfo.getInstance());
+        cmdMap.put("logout", Logout.getInstance());
+        cmdMap.put("addCourse", AddCourse.getInstance());
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {

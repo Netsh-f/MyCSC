@@ -5,7 +5,14 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class Logout extends Function {
-    public static Logout logout = new Logout();
+    private static Logout logout = new Logout();
+
+    private Logout() {
+    }
+
+    public static Logout getInstance() {
+        return logout;
+    }
 
     @Override
     public void run(ArrayList<String> parameterList) {

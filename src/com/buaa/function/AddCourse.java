@@ -8,6 +8,14 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class AddCourse extends Function {
+    private static AddCourse addCourse = new AddCourse();
+
+    private AddCourse() {
+    }
+
+    public static AddCourse getInstance(){
+        return addCourse;
+    }
 
     @Override
     public void run(ArrayList<String> parameterList) {

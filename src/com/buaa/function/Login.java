@@ -8,7 +8,14 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class Login extends Function {
-    public static Login login = new Login();
+    private static Login login = new Login();
+
+    private Login() {
+    }
+
+    public static Login getInstance(){
+        return login;
+    }
 
     @Override
     public void run(ArrayList<String> parameterList) {

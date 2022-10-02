@@ -9,7 +9,14 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class Register extends Function {
-    public static Register register = new Register();
+    private static Register register = new Register();
+
+    private Register() {
+    }
+
+    public static Register getInstance() {
+        return register;
+    }
 
     @Override
     public void run(ArrayList<String> parameterList) {
