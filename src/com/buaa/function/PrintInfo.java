@@ -22,10 +22,10 @@ public class PrintInfo extends Function {
         if (!(parameterList.size() == 0 || parameterList.size() == 1)) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
-            if (currentUser == UserOperation.getNoUser()) {
+            if (UserOperation.isNoUser()) {
                 System.out.println("login first");
             } else {
+                User currentUser = UserOperation.getCurrentUser();
                 if (parameterList.size() == 0) {
                     System.out.println(currentUser.toString());
                 } else {

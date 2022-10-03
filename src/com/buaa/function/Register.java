@@ -25,7 +25,7 @@ public class Register extends Function {
         if (parameterList.size() != 6) {
             System.out.println("arguments illegal");
         } else {
-            if (UserOperation.getCurrentUser() == UserOperation.getNoUser()) {
+            if (UserOperation.isNoUser()) {
                 String id = parameterList.get(0);
                 String firstName = parameterList.get(1);
                 String lastName = parameterList.get(2);

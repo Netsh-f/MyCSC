@@ -1,5 +1,7 @@
 package com.buaa.data;
 
+import java.util.TreeMap;
+
 public class User {
     private String id;
     private String firstName;//名
@@ -7,6 +9,42 @@ public class User {
     private String emailAddress;
     private String password;
     private String type;
+
+    private boolean assistant = false;
+
+    private final TreeMap<String, Course> courseTreeMap = new TreeMap<>();
+
+    public void addCourse(Course course) {
+        courseTreeMap.put(course.getId(), course);
+    }
+
+    public TreeMap<String, Course> getCourseTreeMap() {
+        return courseTreeMap;
+    }
+
+    public boolean isCourseIdExist(String id) {
+        return courseTreeMap.containsKey(id);
+    }
+
+    public void removeCourse(String id) {
+        courseTreeMap.remove(id);
+    }
+
+    public Course getCourse(String id) {
+        return courseTreeMap.get(id);
+    }
+
+    public boolean isCourseTreeMapEmpty() {
+        return courseTreeMap.isEmpty();
+    }
+
+    public void setAssistant() {
+        assistant = true;
+    }
+
+    public boolean isAssistant() {
+        return assistant;
+    }
 
     @Override
     public String toString() {

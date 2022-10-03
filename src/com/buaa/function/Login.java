@@ -23,7 +23,7 @@ public class Login extends Function {
         if (parameterList.size() != 2) {
             System.out.println("arguments illegal");
         } else {
-            if (UserOperation.getCurrentUser() != UserOperation.getNoUser()) {
+            if (UserOperation.isNoUser()) {
                 System.out.println("already logged in");
             } else {
                 String id = parameterList.get(0);
