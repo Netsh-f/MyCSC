@@ -24,6 +24,7 @@ public class Logout extends Function {
             } else {
                 UserOperation.setCurrentUser(UserOperation.getNoUser());
                 UserOperation.setCurrentCourse(UserOperation.getNoCourse());
+                UserOperation.initRole();
                 System.out.println("Bye~");
             }
         }

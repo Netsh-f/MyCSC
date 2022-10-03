@@ -16,6 +16,10 @@ public class UserOperation {
     private static Course currentCourse = noCourse;
     private static boolean currentRole = false;//false为学生 true为助教
 
+    public static void initRole() {
+        currentRole = false;
+    }
+
     public static void changeRole() {
         currentRole = !currentRole;
     }

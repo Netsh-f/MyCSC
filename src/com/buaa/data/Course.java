@@ -1,7 +1,5 @@
 package com.buaa.data;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.TreeMap;
 
 public class Course {
@@ -10,8 +8,12 @@ public class Course {
     private int teacherNum;
     private int AssistantNum;
     private int studentNum;
-
+    private TreeMap<String, Ware> wareTreeMap = new TreeMap<>();
     private TreeMap<String, User> adminTreeMap = new TreeMap<>();
+
+    public void addWare(Ware ware) {
+        wareTreeMap.put(ware.getId(), ware);
+    }
 
     public TreeMap<String, User> getAdminTreeMap() {
         return adminTreeMap;

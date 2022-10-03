@@ -25,7 +25,7 @@ public class ListAdmin extends Function {
             User currentUser = UserOperation.getCurrentUser();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!(currentUser instanceof Professor || currentUser.isAssistant())) {
+            } else if (!(currentUser instanceof Professor || UserOperation.isAssistant())) {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");

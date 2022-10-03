@@ -27,7 +27,7 @@ public class SelectCourse extends Function {
             String id = parameterList.get(0);
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!(currentUser instanceof Professor || currentUser.isAssistant())) {
+            } else if (!(currentUser instanceof Professor || UserOperation.isAssistant())) {
                 System.out.println("permission denied");
             } else if (!Course.isIdLegal(id)) {
                 System.out.println("course id illegal");

@@ -30,7 +30,7 @@ public class Login extends Function {
                 String password = parameterList.get(1);
                 if (!User.isIdLegal(id)) {
                     System.out.println("user id illegal");
-                } else if (!Data.isIdExist(id)) {
+                } else if (!Data.isUserIdExist(id)) {
                     System.out.println("user id not exist");
                 } else {
                     User userToBeLoggedIn = Data.getUser(id);

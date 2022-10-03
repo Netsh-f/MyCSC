@@ -1,9 +1,6 @@
 package com.buaa.function;
 
-import com.buaa.data.Course;
-import com.buaa.data.Data;
-import com.buaa.data.Professor;
-import com.buaa.data.User;
+import com.buaa.data.*;
 import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class AddAdmin extends Function {
                         System.out.println("user id illegal");
                         legalFlag = false;
                         break;
-                    } else if (Data.isIdExist(id)) {
+                    } else if (Data.isUserIdExist(id)) {
                         System.out.println("user id not exist");
                         legalFlag = false;
                         break;
@@ -48,6 +45,10 @@ public class AddAdmin extends Function {
                     Course currentCourse = UserOperation.getCurrentCourse();
                     for (String id : parameterList) {
                         currentCourse.addAdmin(id);
+                        User user = Data.getUser(id);
+                        if (user instanceof Student) {
+                            user.setAssistant();
+                        }
                     }
                     System.out.println("add admin success");
                 }

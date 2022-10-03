@@ -34,7 +34,7 @@ public class Register extends Function {
                 String confirmPassword = parameterList.get(5);
                 if (!User.isIdLegal(id)) {
                     System.out.println("user id illegal");
-                } else if (Data.isIdExist(id)) {
+                } else if (Data.isUserIdExist(id)) {
                     System.out.println("user id duplication");
                 } else if (!User.isNameLegal(firstName) || !User.isNameLegal(lastName)) {
                     System.out.println("user name illegal");

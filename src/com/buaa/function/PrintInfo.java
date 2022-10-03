@@ -34,7 +34,7 @@ public class PrintInfo extends Function {
                         System.out.println("permission denied");
                     } else if (!User.isIdLegal(id)) {
                         System.out.println("user id illegal");
-                    } else if (!Data.isIdExist(id)) {
+                    } else if (!Data.isUserIdExist(id)) {
                         System.out.println("user id not exist");
                     } else {
                         System.out.println(Data.getUser(id).toString());
