@@ -40,6 +40,7 @@ public class AddCourse extends Function {
                 System.out.println("add course success");
                 Course course = new Course(id, name);
                 ((Professor) currentUser).addCourse(course);
+                course.addAdmin(currentUser.getId());
                 Data.addCourse(course);
             }
         }

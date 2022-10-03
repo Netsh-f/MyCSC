@@ -9,10 +9,12 @@ public class User {
     private String emailAddress;
     private String password;
     private String type;
-
     private boolean assistant = false;
-
     private final TreeMap<String, Course> courseTreeMap = new TreeMap<>();
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
     public void addCourse(Course course) {
         courseTreeMap.put(course.getId(), course);

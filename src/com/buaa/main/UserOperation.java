@@ -14,6 +14,15 @@ public class UserOperation {
     private static User currentUser = noUser;
     private static final Course noCourse = new Course();
     private static Course currentCourse = noCourse;
+    private static boolean currentRole = false;//false为学生 true为助教
+
+    public static void changeRole() {
+        currentRole = !currentRole;
+    }
+
+    public static boolean isAssistant() {
+        return currentRole;
+    }
 
     public static Course getCurrentCourse() {
         return currentCourse;
@@ -62,6 +71,8 @@ public class UserOperation {
         cmdMap.put("listCourse", ListCourse.getInstance());
         cmdMap.put("selectCourse", SelectCourse.getInstance());
         cmdMap.put("addAdmin", AddAdmin.getInstance());
+        cmdMap.put("removeAdmin", RemoveAdmin.getInstance());
+        cmdMap.put("changeRole", ChangeRole.getInstance());
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {

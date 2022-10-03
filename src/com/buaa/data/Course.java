@@ -1,5 +1,7 @@
 package com.buaa.data;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.TreeMap;
 
 public class Course {
@@ -11,8 +13,20 @@ public class Course {
 
     private TreeMap<String, User> adminTreeMap = new TreeMap<>();
 
+    public TreeMap<String, User> getAdminTreeMap() {
+        return adminTreeMap;
+    }
+
     public void addAdmin(String id) {
         adminTreeMap.put(id, Data.getUser(id));
+    }
+
+    public boolean isAdminIdExist(String id) {
+        return adminTreeMap.containsKey(id);
+    }
+
+    public void removeAdmin(String id) {
+        adminTreeMap.remove(id);
     }
 
     public int getStudentNum() {
@@ -67,6 +81,17 @@ public class Course {
                     "] [TeacherNum:" + course.getTeacherNum() +
                     "] [AssistantNum:" + course.getAssistantNum() +
                     "] [StudentNum:" + course.getStudentNum() +
+                    "]");
+        });
+    }
+
+    public static void listAdmin(TreeMap<String, User> adminTreeMap) {
+        adminTreeMap.forEach((id, user) -> {
+            System.out.println("[ID:" + user.getId() +
+                    "] [Name:" + user.getLastName() +
+                    " " + user.getFirstName() +
+                    "] [Type:" + user.getType() +
+                    "] [Email:" + user.getEmailAddress() +
                     "]");
         });
     }
