@@ -9,7 +9,7 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class Register extends Function {
-    private static Register register = new Register();
+    private static final Register register = new Register();
 
     private Register() {
     }
@@ -32,17 +32,17 @@ public class Register extends Function {
                 String emailAddress = parameterList.get(3);
                 String password = parameterList.get(4);
                 String confirmPassword = parameterList.get(5);
-                if (User.isIdLegal(id) == false) {
+                if (!User.isIdLegal(id)) {
                     System.out.println("user id illegal");
-                } else if (Data.isIdExist(id) == true) {
+                } else if (Data.isIdExist(id)) {
                     System.out.println("user id duplication");
-                } else if (User.isNameLegal(firstName) == false || User.isNameLegal(lastName) == false) {
+                } else if (!User.isNameLegal(firstName) || !User.isNameLegal(lastName)) {
                     System.out.println("user name illegal");
-                } else if (User.isEmailAddressLegal(emailAddress) == false) {
+                } else if (!User.isEmailAddressLegal(emailAddress)) {
                     System.out.println("email address illegal");
-                } else if (User.isPasswordLegal(password) == false) {
+                } else if (!User.isPasswordLegal(password)) {
                     System.out.println("password illegal");
-                } else if (password.equals(confirmPassword) == false) {
+                } else if (!password.equals(confirmPassword)) {
                     System.out.println("passwords inconsistent");
                 } else {
                     System.out.println("register success");

@@ -3,7 +3,7 @@ package com.buaa.data;
 import java.util.HashMap;
 
 public class Data {
-    private static HashMap<String, User> userHashMap = new HashMap<String, User>();
+    private static final HashMap<String, User> userHashMap = new HashMap<>();
 
     public static void addUser(User user) {
         userHashMap.put(user.getId(), user);

@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class UserOperation {
-    private static int userState;
-    private static HashMap<String, Integer> userStateMap = new HashMap<String, Integer>();
-    private static HashMap<String, Function> cmdMap = new HashMap<String, Function>();
+    private static final HashMap<String, Function> cmdMap = new HashMap<>();
 
-    private static User noUser = new User();
+    private static final User noUser = new User();
     private static User currentUser = noUser;
 
     public static User getNoUser() {

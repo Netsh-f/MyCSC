@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Professor extends User {
 
-    private HashMap<String, Course> courseHashMap = new HashMap<String, Course>();
+    private final HashMap<String, Course> courseHashMap = new HashMap<>();
 
     public void addCourse(Course course) {
         courseHashMap.put(course.getId(), course);

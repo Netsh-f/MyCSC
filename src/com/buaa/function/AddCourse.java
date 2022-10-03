@@ -8,7 +8,7 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class AddCourse extends Function {
-    private static AddCourse addCourse = new AddCourse();
+    private static final AddCourse addCourse = new AddCourse();
 
     private AddCourse() {
     }
@@ -29,7 +29,7 @@ public class AddCourse extends Function {
                 System.out.println("not logged in");
             } else if (!(currentUser instanceof Professor)) {
                 System.out.println("permission denied");
-            } else if (Course.isIdLegal(id) == false) {
+            } else if (!Course.isIdLegal(id)) {
                 System.out.println("course id illegal");
             } else if (((Professor) currentUser).isCourseIdExist(id)) {
                 System.out.println("course id duplication");

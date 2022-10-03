@@ -5,7 +5,7 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class Logout extends Function {
-    private static Logout logout = new Logout();
+    private static final Logout logout = new Logout();
 
     private Logout() {
     }

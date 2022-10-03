@@ -8,7 +8,7 @@ import com.buaa.main.UserOperation;
 import java.util.ArrayList;
 
 public class Login extends Function {
-    private static Login login = new Login();
+    private static final Login login = new Login();
 
     private Login() {
     }
@@ -28,9 +28,9 @@ public class Login extends Function {
             } else {
                 String id = parameterList.get(0);
                 String password = parameterList.get(1);
-                if (User.isIdLegal(id) == false) {
+                if (!User.isIdLegal(id)) {
                     System.out.println("user id illegal");
-                } else if (Data.isIdExist(id) == false) {
+                } else if (!Data.isIdExist(id)) {
                     System.out.println("user id not exist");
                 } else {
                     User userToBeLoggedIn = Data.getUser(id);

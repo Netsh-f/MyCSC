@@ -3,13 +3,13 @@ package com.buaa.function;
 import java.util.ArrayList;
 
 public class Quit extends Function {
-    private static Quit quit = new Quit();
+    private static final Quit quit = new Quit();
 
     private Quit() {
     }
 
     public static Quit getInstance(){
-        return getInstance();
+        return quit;
     }
 
     @Override

@@ -4,7 +4,6 @@ public class User {
     private String id;
     private String firstName;//名
     private String lastName;//姓
-    private String name;//姓名
     private String emailAddress;
     private String password;
     private String type;
@@ -47,8 +46,6 @@ public class User {
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.password = password;
-
-        this.name = this.lastName + this.firstName;
     }
 
     public User() {
