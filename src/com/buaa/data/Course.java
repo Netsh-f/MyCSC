@@ -11,6 +11,18 @@ public class Course {
     private TreeMap<String, Ware> wareTreeMap = new TreeMap<>();
     private TreeMap<String, User> adminTreeMap = new TreeMap<>();
 
+    public TreeMap<String, Ware> getWareTreeMap() {
+        return wareTreeMap;
+    }
+
+    public void removeWare(String id){
+        wareTreeMap.remove(id);
+    }
+
+    public boolean isWareIdExist(String id){
+        return wareTreeMap.containsKey(id);
+    }
+
     public void addWare(Ware ware) {
         wareTreeMap.put(ware.getId(), ware);
     }

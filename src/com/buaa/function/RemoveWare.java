@@ -5,25 +5,24 @@ import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
 
-public class AddWare extends Function {
-    private static final AddWare addWare = new AddWare();
+public class RemoveWare extends Function {
+    private static final RemoveWare removeWare = new RemoveWare();
 
-    private AddWare() {
+    private RemoveWare() {
     }
 
-    public static AddWare getInstance() {
-        return addWare;
+    public static RemoveWare getInstance() {
+        return removeWare;
     }
 
     @Override
     public void run(ArrayList<String> parameterList) {
-        if (parameterList.size() != 2) {
+        if (parameterList.size() != 1) {
             System.out.println("arguments illegal");
         } else {
             User currentUser = UserOperation.getCurrentUser();
             Course currentCourse = UserOperation.getCurrentCourse();
             String id = parameterList.get(0);
-            String name = parameterList.get(1);
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
             } else if (!(currentUser instanceof Professor)) {
@@ -32,15 +31,12 @@ public class AddWare extends Function {
                 System.out.println("no course selected");
             } else if (!Ware.isIdLegal(id, currentCourse.getId())) {
                 System.out.println("ware id illegal");
-            } else if (Data.isWareIdExist(id)) {
-                System.out.println("ware id duplication");
-            } else if (!Ware.isNameLegal(name)) {
-                System.out.println("ware name illegal");
+            } else if (!currentCourse.isWareIdExist(id)) {
+                System.out.println("ware id not exist");
             } else {
-                Ware ware = new Ware(id, name);
-                Data.addWare(ware);
-                currentCourse.addWare(ware);
-                System.out.println("add ware success");
+                currentCourse.removeWare(id);
+                Data.removeWare(id);
+                System.out.println("remove ware success");
             }
         }
     }

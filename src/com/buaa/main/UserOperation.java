@@ -77,6 +77,9 @@ public class UserOperation {
         cmdMap.put("addAdmin", AddAdmin.getInstance());
         cmdMap.put("removeAdmin", RemoveAdmin.getInstance());
         cmdMap.put("changeRole", ChangeRole.getInstance());
+        cmdMap.put("addWare", AddWare.getInstance());
+        cmdMap.put("removeWare", RemoveWare.getInstance());
+        cmdMap.put("listWare", ListWare.getInstance());
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {

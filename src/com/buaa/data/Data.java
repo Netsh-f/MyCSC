@@ -8,6 +8,10 @@ public class Data {
     private static final HashMap<String, Course> courseHashMap = new HashMap<>();
     private static final HashMap<String, Ware> wareHashMap = new HashMap<>();
 
+    public static void removeWare(String id){
+        wareHashMap.remove(id);
+    }
+
     public static Course getCourse(String id) {
         return courseHashMap.get(id);
     }
