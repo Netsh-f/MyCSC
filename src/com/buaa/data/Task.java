@@ -45,8 +45,9 @@ public class Task {
     }
 
     public static boolean isTimeLegal(String startTime, String endTime) {
-        if (startTime.matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$") &&
-                endTime.matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$")) {
+        //"^(19\d\d|[2-9]\d\d\d)"
+        if (startTime.matches("^(19\\d\\d|[2-9]\\d\\d\\d)-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$") &&
+                endTime.matches("^(19\\d\\d|[2-9]\\d\\d\\d)-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$")) {
             try {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
                 format.setLenient(false);
