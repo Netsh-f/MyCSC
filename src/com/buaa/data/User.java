@@ -51,6 +51,7 @@ public class User {
 
     public void setAssistant() {
         assistant = true;
+        type = "Assistant";
     }
 
     public boolean isAssistant() {
