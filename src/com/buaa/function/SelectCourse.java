@@ -34,7 +34,7 @@ public class SelectCourse extends Function {
             } else if (!currentUser.isCourseIdExist(id)) {
                 System.out.println("course id not exist");
             } else {
-                UserOperation.setCurrentCourse(currentUser.getCourse(id));
+                UserOperation.setCurrentCourse(currentUser.getCourse(id));//从当前用户的课程中获取课程，给当前课程
                 System.out.println("select course success");
             }
         }

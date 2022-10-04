@@ -32,15 +32,15 @@ public class AddCourse extends Function {
                 System.out.println("permission denied");
             } else if (!(Course.isIdLegal(id))) {
                 System.out.println("course id illegal");
-            } else if (((Professor) currentUser).isCourseIdExist(id)) {
+            } else if (currentUser.isCourseIdExist(id)) {
                 System.out.println("course id duplication");
             } else if (!(Course.isNameLegal(name))) {
                 System.out.println("course name illegal");
             } else {
                 Course course = new Course(id, name);
-                currentUser.addManagerCourse(course);
-                course.addAdmin(currentUser.getId());
-                Data.addCourse(course);
+                currentUser.addManagerCourse(course);//添加到用户名下
+                course.addAdmin(currentUser.getId());//给课程添加管理员
+                Data.addCourse(course);//添加到课程总表
                 System.out.println("add course success");
             }
         }

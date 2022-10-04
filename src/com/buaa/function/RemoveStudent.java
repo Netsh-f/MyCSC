@@ -23,7 +23,6 @@ public class RemoveStudent extends Function {
         if (parameterList.size() != 1) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
             Course currentCourse = UserOperation.getCurrentCourse();
             String id = parameterList.get(0);
             if (UserOperation.isNoUser()) {
@@ -37,7 +36,7 @@ public class RemoveStudent extends Function {
             } else if (!currentCourse.isStudentIdExist(id)) {
                 System.out.println("user id not exist");
             } else {
-                currentCourse.removeTask(id);
+                currentCourse.removeStudent(id);
                 Data.getUser(id).removeStudentCourse(currentCourse.getId());
                 System.out.println("remove student success");
             }

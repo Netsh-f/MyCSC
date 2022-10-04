@@ -27,11 +27,11 @@ public class RemoveTask extends Function {
                 System.out.println("not logged in");
             }else if(!UserOperation.isManager()){
                 System.out.println("permission denied");
-            }else if(!UserOperation.isNoCourse()){
+            }else if(UserOperation.isNoCourse()){
                 System.out.println("no course selected");
             }else if(!Task.isIdLegal(id, currentCourse.getId())){
                 System.out.println("task id illegal");
-            }else if(currentCourse.isTaskIdExist(id)){
+            }else if(!currentCourse.isTaskIdExist(id)){
                 System.out.println("task id not exist");
             }else{
                 Data.removeTask(id);

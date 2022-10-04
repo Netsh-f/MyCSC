@@ -1,5 +1,7 @@
 package com.buaa.data;
 
+import com.buaa.main.UserOperation;
+
 import java.util.TreeMap;
 
 public class User {
@@ -51,7 +53,15 @@ public class User {
 
     public void setAssistant(boolean flag) {
         assistant = flag;
-        type = flag ? "Assistant" : "Student";
+        if (flag) {
+            type = "Assistant";
+        } else {
+            type = "Student";
+            //如果解除助教身份的时候，正好是该学生正在使用助教端，那么强制返回到学生端
+            if (this == UserOperation.getCurrentUser() && UserOperation.isAssistantRole()) {
+                UserOperation.changeRole();
+            }
+        }
     }
 
     public boolean isAssistant() {

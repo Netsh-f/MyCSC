@@ -18,7 +18,7 @@ public class UserOperation {
     private static boolean currentRole = false;//false为学生 true为助教
 
     public static boolean isManager() {
-        return currentUser instanceof Professor || isAssistant();
+        return currentUser instanceof Professor || isAssistantRole();
     }
 
     public static boolean isProfessor() {
@@ -33,7 +33,7 @@ public class UserOperation {
         currentRole = !currentRole;
     }
 
-    public static boolean isAssistant() {
+    public static boolean isAssistantRole() {
         return currentRole;
     }
 

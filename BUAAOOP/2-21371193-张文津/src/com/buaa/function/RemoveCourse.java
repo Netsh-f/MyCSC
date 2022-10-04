@@ -31,12 +31,16 @@ public class RemoveCourse extends Function {
                 System.out.println("permission denied");
             } else if (!Course.isIdLegal(id)) {
                 System.out.println("course id illegal");
-            } else if (!((Professor) currentUser).isCourseIdExist(id)) {
+            } else if (!currentUser.isCourseIdExist(id)) {
                 System.out.println("course id not exist");
             } else {
-                ((Professor) currentUser).removeManagerCourse(id);
-                Data.removeCourse(id);
-                if(id.equals(UserOperation.getCurrentCourse().getId())){
+                Course course = Data.getCourse(id);
+                currentUser.removeManagerCourse(id);//从当前用户名下移除课程
+                course.removeAdmin(currentUser.getId());//从课程的管理员列表中移除该用户
+                if(course.getAdminTreeMap().size()==0){//如果没有管理员了，彻底删除课程
+                    Data.removeCourse(id);
+                }
+                if(id.equals(UserOperation.getCurrentCourse().getId())){//如果删除的是当前选择的课程，当前选择课程清空
                     UserOperation.setCurrentCourse(UserOperation.getNoCourse());
                 }
                 System.out.println("remove course success");

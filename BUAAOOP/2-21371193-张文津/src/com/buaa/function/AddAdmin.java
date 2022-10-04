@@ -29,7 +29,7 @@ public class AddAdmin extends Function {
                 System.out.println("no course selected");
             } else {
                 boolean legalFlag = true;
-                for (String id : parameterList) {
+                for (String id : parameterList) {//遍历参数是否全部合法
                     if (!User.isIdLegal(id)) {
                         System.out.println("user id illegal");
                         legalFlag = false;
@@ -42,12 +42,12 @@ public class AddAdmin extends Function {
                 }
                 if (legalFlag) {
                     Course currentCourse = UserOperation.getCurrentCourse();
-                    for (String id : parameterList) {
-                        currentCourse.addAdmin(id);
-                        Data.getUser(id).addManagerCourse(currentCourse);
-
+                    for (String id : parameterList) {//遍历参数逐个添加
                         User user = Data.getUser(id);
-                        if (user instanceof Student) {
+                        currentCourse.addAdmin(id);//给当前选择的课程添加管理员
+                        user.addManagerCourse(currentCourse);//给这个人添加管理的课程
+
+                        if (user instanceof Student) {//如果这个人是学生，设置为助教
                             user.setAssistant(true);
                         }
                     }

@@ -2,6 +2,7 @@ package com.buaa.function;
 
 import com.buaa.data.Course;
 import com.buaa.data.Data;
+import com.buaa.data.Student;
 import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
@@ -36,11 +37,12 @@ public class RemoveAdmin extends Function {
             } else if (!currentCourse.isAdminIdExist(id)) {
                 System.out.println("user id not exist");
             } else {
-                currentCourse.removeAdmin(id);
                 User user = Data.getUser(id);
-                user.removeManagerCourse(currentCourse.getId());
-                if(Data.getUser(id).getManagerCourseTreeMap().size()==0){
-                    Data.getUser(id).setAssistant(false);
+                currentCourse.removeAdmin(id);//从当前课程中删除管理员
+                user.removeManagerCourse(currentCourse.getId());//从这个人的管理课表中删除课程
+                //如果这个人是学生（助教）且没有别的管理的课程，解除助教身份
+                if (user.getManagerCourseTreeMap().size() == 0 && user instanceof Student) {
+                    user.setAssistant(false);
                 }
                 System.out.println("remove admin success");
             }
