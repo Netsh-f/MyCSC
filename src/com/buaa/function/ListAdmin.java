@@ -22,10 +22,9 @@ public class ListAdmin extends Function {
         if (parameterList.size() != 0) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!(currentUser instanceof Professor || UserOperation.isAssistant())) {
+            } else if (!UserOperation.isManager()) {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");

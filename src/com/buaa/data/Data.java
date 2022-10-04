@@ -7,8 +7,21 @@ public class Data {
     private static final HashMap<String, User> userHashMap = new HashMap<>();
     private static final HashMap<String, Course> courseHashMap = new HashMap<>();
     private static final HashMap<String, Ware> wareHashMap = new HashMap<>();
+    private static final HashMap<String, Task> taskHashMap = new HashMap<>();
 
-    public static void removeWare(String id){
+    public static void removeTask(String id) {
+        taskHashMap.remove(id);
+    }
+
+    public static void addTask(Task task) {
+        taskHashMap.put(task.getId(), task);
+    }
+
+    public static boolean isTaskIdExist(String id) {
+        return taskHashMap.containsKey(id);
+    }
+
+    public static void removeWare(String id) {
         wareHashMap.remove(id);
     }
 

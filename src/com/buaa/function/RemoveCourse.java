@@ -27,7 +27,7 @@ public class RemoveCourse extends Function {
             String id = parameterList.get(0);
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!(currentUser instanceof Professor)) {
+            } else if (!UserOperation.isProfessor()) {
                 System.out.println("permission denied");
             } else if (!Course.isIdLegal(id)) {
                 System.out.println("course id illegal");

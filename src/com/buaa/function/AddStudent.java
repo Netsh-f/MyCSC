@@ -5,15 +5,14 @@ import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
 
-public class AddAdmin extends Function {
-    private static final AddAdmin addAdmin = new AddAdmin();
+public class AddStudent extends Function {
+    private static final AddStudent addStudent = new AddStudent();
 
-    private AddAdmin() {
-
+    private AddStudent() {
     }
 
-    public static AddAdmin getInstance() {
-        return addAdmin;
+    public static AddStudent getInstance() {
+        return addStudent;
     }
 
     @Override
@@ -21,9 +20,11 @@ public class AddAdmin extends Function {
         if (parameterList.size() == 0) {
             System.out.println("arguments illegal");
         } else {
+            User currentUser = UserOperation.getCurrentUser();
+            Course currentCourse = UserOperation.getCurrentCourse();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!UserOperation.isProfessor()) {
+            } else if (!UserOperation.isManager()) {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
@@ -38,20 +39,18 @@ public class AddAdmin extends Function {
                         System.out.println("user id not exist");
                         legalFlag = false;
                         break;
+                    } else if (Professor.isTeacher(id)) {
+                        System.out.println("I'm professor rather than student!");
+                        legalFlag = false;
+                        break;
                     }
                 }
                 if (legalFlag) {
-                    Course currentCourse = UserOperation.getCurrentCourse();
                     for (String id : parameterList) {
-                        currentCourse.addAdmin(id);
-                        Data.getUser(id).addCourse(currentCourse);
-
-                        User user = Data.getUser(id);
-                        if (user instanceof Student) {
-                            user.setAssistant();
-                        }
+                        currentCourse.addStudent(Data.getUser(id));
+                        Data.getUser(id).addStudentCourse(currentCourse);
                     }
-                    System.out.println("add admin success");
+                    System.out.println("add student success");
                 }
             }
         }

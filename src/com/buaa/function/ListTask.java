@@ -2,20 +2,20 @@ package com.buaa.function;
 
 import com.buaa.data.Course;
 import com.buaa.data.Professor;
+import com.buaa.data.Task;
 import com.buaa.data.User;
-import com.buaa.data.Ware;
 import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
 
-public class ListWare extends Function {
-    private static final ListWare listWare = new ListWare();
+public class ListTask extends Function {
+    private static final ListTask listTask = new ListTask();
 
-    private ListWare() {
+    private ListTask() {
     }
 
-    public static ListWare getInstance() {
-        return listWare;
+    public static ListTask getInstance() {
+        return listTask;
     }
 
     @Override
@@ -23,7 +23,6 @@ public class ListWare extends Function {
         if (parameterList.size() != 0) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
             Course currentCourse = UserOperation.getCurrentCourse();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
@@ -32,7 +31,7 @@ public class ListWare extends Function {
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
             } else {
-                Ware.listWare(currentCourse.getWareTreeMap());
+                Task.listTask(currentCourse.getTaskTreeMap());
             }
         }
     }

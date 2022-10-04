@@ -29,7 +29,7 @@ public class Ware {
     }
 
     public static boolean isNameLegal(String name) {
-        return name.matches("^\\w+\\.[A-Za-z0-9]+$") && name.matches("^\\w{6,16}$");
+        return name.matches("^\\w+\\.[A-Za-z0-9]+$") && name.matches("^[\\w\\.]{6,16}$");
     }
 
     public static boolean isIdLegal(String id, String courseId) {

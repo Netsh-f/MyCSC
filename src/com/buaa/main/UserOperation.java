@@ -1,6 +1,7 @@
 package com.buaa.main;
 
 import com.buaa.data.Course;
+import com.buaa.data.Professor;
 import com.buaa.data.User;
 import com.buaa.function.*;
 
@@ -15,6 +16,14 @@ public class UserOperation {
     private static final Course noCourse = new Course();
     private static Course currentCourse = noCourse;
     private static boolean currentRole = false;//false为学生 true为助教
+
+    public static boolean isManager() {
+        return currentUser instanceof Professor || isAssistant();
+    }
+
+    public static boolean isProfessor() {
+        return currentUser instanceof Professor;
+    }
 
     public static void initRole() {
         currentRole = false;
@@ -80,6 +89,11 @@ public class UserOperation {
         cmdMap.put("addWare", AddWare.getInstance());
         cmdMap.put("removeWare", RemoveWare.getInstance());
         cmdMap.put("listWare", ListWare.getInstance());
+        cmdMap.put("addTask", AddTask.getInstance());
+        cmdMap.put("removeTask", RemoveTask.getInstance());
+        cmdMap.put("listTask", ListTask.getInstance());
+        cmdMap.put("addStudent", AddStudent.getInstance());
+        cmdMap.put("removeStudent", RemoveStudent.getInstance());
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {

@@ -6,14 +6,23 @@ public class User {
     private String id;
     private String firstName;//名
     private String lastName;//姓
-    private String emailAddress;
+    private String email;
     private String password;
     private String type;
     private boolean assistant = false;
     private final TreeMap<String, Course> courseTreeMap = new TreeMap<>();
+    private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public void removeStudentCourse(String id) {
+        studentCourseTreeMap.remove(id);
+    }
+
+    public void addStudentCourse(Course course) {
+        studentCourseTreeMap.put(course.getId(), course);
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void addCourse(Course course) {
@@ -53,7 +62,7 @@ public class User {
         return "Name: " + firstName + " " + lastName + "\n" +
                 "ID: " + id + "\n" +
                 "Type: " + type + "\n" +
-                "Email: " + emailAddress;
+                "Email: " + email;
     }
 
     public String getType() {
@@ -80,11 +89,11 @@ public class User {
         return lastName;
     }
 
-    public User(String id, String firstName, String lastName, String emailAddress, String password) {
+    public User(String id, String firstName, String lastName, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
+        this.email = email;
         this.password = password;
     }
 

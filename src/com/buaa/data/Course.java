@@ -10,16 +10,50 @@ public class Course {
     private int studentNum;
     private TreeMap<String, Ware> wareTreeMap = new TreeMap<>();
     private TreeMap<String, User> adminTreeMap = new TreeMap<>();
+    private TreeMap<String, Task> taskTreeMap = new TreeMap<>();
+    private TreeMap<String, User> studentTreeMap = new TreeMap<>();
+
+    public TreeMap<String, User> getStudentTreeMap() {
+        return studentTreeMap;
+    }
+
+    public void removeStudent(String id) {
+        studentTreeMap.remove(id);
+    }
+
+    public boolean isStudentIdExist(String id) {
+        return studentTreeMap.containsKey(id);
+    }
+
+    public void addStudent(User student) {
+        studentTreeMap.put(student.getId(), student);
+    }
+
+    public TreeMap<String, Task> getTaskTreeMap() {
+        return taskTreeMap;
+    }
+
+    public void removeTask(String id) {
+        taskTreeMap.remove(id);
+    }
+
+    public boolean isTaskIdExist(String id) {
+        return taskTreeMap.containsKey(id);
+    }
+
+    public void addTask(Task task) {
+        taskTreeMap.put(task.getId(), task);
+    }
 
     public TreeMap<String, Ware> getWareTreeMap() {
         return wareTreeMap;
     }
 
-    public void removeWare(String id){
+    public void removeWare(String id) {
         wareTreeMap.remove(id);
     }
 
-    public boolean isWareIdExist(String id){
+    public boolean isWareIdExist(String id) {
         return wareTreeMap.containsKey(id);
     }
 
@@ -105,7 +139,17 @@ public class Course {
                     "] [Name:" + user.getLastName() +
                     " " + user.getFirstName() +
                     "] [Type:" + user.getType() +
-                    "] [Email:" + user.getEmailAddress() +
+                    "] [Email:" + user.getEmail() +
+                    "]");
+        });
+    }
+
+    public static void listStudent(TreeMap<String, User> studentTreeMap) {
+        studentTreeMap.forEach((id, student) -> {
+            System.out.println("[ID:" + student.getId() +
+                    "] [Name" + student.getLastName() +
+                    " " + student.getFirstName() +
+                    "] [Email:" + student.getEmail() +
                     "]");
         });
     }

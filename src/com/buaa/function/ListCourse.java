@@ -25,7 +25,7 @@ public class ListCourse extends Function {
             User currentUser = UserOperation.getCurrentUser();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!(currentUser instanceof Professor)) {
+            } else if (!UserOperation.isProfessor()) {
                 System.out.println("permission denied");
             } else if (((Professor) currentUser).isCourseTreeMapEmpty()) {
                 System.out.println("course not exist");

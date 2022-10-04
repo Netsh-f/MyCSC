@@ -26,7 +26,7 @@ public class AddWare extends Function {
             String name = parameterList.get(1);
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!(currentUser instanceof Professor)) {
+            } else if (!UserOperation.isProfessor()) {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
