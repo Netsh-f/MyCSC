@@ -80,6 +80,11 @@ public class Course {
 
     public void removeAdmin(String id) {
         adminTreeMap.remove(id);
+        if (Professor.isTeacher(id)) {
+            teacherTreeMap.remove(id);
+        } else {
+            assistantTreeMap.remove(id);
+        }
     }
 
     public int getStudentNum() {
@@ -144,7 +149,7 @@ public class Course {
     public static void listStudent(TreeMap<String, User> studentTreeMap) {
         studentTreeMap.forEach((id, student) -> {
             System.out.println("[ID:" + student.getId() +
-                    "] [Name" + student.getLastName() +
+                    "] [Name:" + student.getLastName() +
                     " " + student.getFirstName() +
                     "] [Email:" + student.getEmail() +
                     "]");

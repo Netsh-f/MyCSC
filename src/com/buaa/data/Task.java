@@ -70,7 +70,6 @@ public class Task {
         Matcher matcher1 = Pattern.compile("^T(\\d{4})\\d{2}$").matcher(id);
         Matcher matcher2 = Pattern.compile("^C(\\d{4})$").matcher(courseId);
         if (matcher1.find() && matcher2.find()) {
-            System.out.println("m1group(1):"+matcher1.group(1)+" m2group(1):"+matcher2.group(1));
             return id.matches("^T(1[7-9]|2[0-2])([1-9]\\d|0[1-9])([1-9]\\d|0[1-9])$")
                     && matcher2.group(1).equals(matcher1.group(1));
         }

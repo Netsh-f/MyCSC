@@ -34,8 +34,11 @@ public class RemoveCourse extends Function {
             } else if (!((Professor) currentUser).isCourseIdExist(id)) {
                 System.out.println("course id not exist");
             } else {
-                ((Professor) currentUser).removeCourse(id);
+                ((Professor) currentUser).removeManagerCourse(id);
                 Data.removeCourse(id);
+                if(id.equals(UserOperation.getCurrentCourse().getId())){
+                    UserOperation.setCurrentCourse(UserOperation.getNoCourse());
+                }
                 System.out.println("remove course success");
             }
         }

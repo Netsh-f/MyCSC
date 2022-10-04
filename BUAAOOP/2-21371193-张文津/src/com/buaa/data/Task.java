@@ -45,8 +45,9 @@ public class Task {
     }
 
     public static boolean isTimeLegal(String startTime, String endTime) {
-        if (startTime.matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$") &&
-                endTime.matches("^\\d{4}-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$")) {
+        //"^(19\d\d|[2-9]\d\d\d)"
+        if (startTime.matches("^(19\\d\\d|[2-9]\\d\\d\\d)-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$") &&
+                endTime.matches("^(19\\d\\d|[2-9]\\d\\d\\d)-\\d{2}-\\d{2}-\\d{2}:\\d{2}:\\d{2}$")) {
             try {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
                 format.setLenient(false);
@@ -66,11 +67,11 @@ public class Task {
     }
 
     public static boolean isIdLegal(String id, String courseId) {
-        Pattern pattern = Pattern.compile("^T(\\d{4})\\d{2}$");
-        Matcher matcher = pattern.matcher(id);
-        if (matcher.find()) {
+        Matcher matcher1 = Pattern.compile("^T(\\d{4})\\d{2}$").matcher(id);
+        Matcher matcher2 = Pattern.compile("^C(\\d{4})$").matcher(courseId);
+        if (matcher1.find() && matcher2.find()) {
             return id.matches("^T(1[7-9]|2[0-2])([1-9]\\d|0[1-9])([1-9]\\d|0[1-9])$")
-                    && courseId.equals(matcher.group(1));
+                    && matcher2.group(1).equals(matcher1.group(1));
         }
         return false;
     }

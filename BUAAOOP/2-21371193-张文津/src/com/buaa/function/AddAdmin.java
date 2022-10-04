@@ -44,11 +44,11 @@ public class AddAdmin extends Function {
                     Course currentCourse = UserOperation.getCurrentCourse();
                     for (String id : parameterList) {
                         currentCourse.addAdmin(id);
-                        Data.getUser(id).addCourse(currentCourse);
+                        Data.getUser(id).addManagerCourse(currentCourse);
 
                         User user = Data.getUser(id);
                         if (user instanceof Student) {
-                            user.setAssistant();
+                            user.setAssistant(true);
                         }
                     }
                     System.out.println("add admin success");

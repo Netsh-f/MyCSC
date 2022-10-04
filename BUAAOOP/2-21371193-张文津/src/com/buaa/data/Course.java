@@ -5,11 +5,10 @@ import java.util.TreeMap;
 public class Course {
     private String id;
     private String name;
-    private int teacherNum;
-    private int AssistantNum;
-    private int studentNum;
     private TreeMap<String, Ware> wareTreeMap = new TreeMap<>();
     private TreeMap<String, User> adminTreeMap = new TreeMap<>();
+    private TreeMap<String, User> teacherTreeMap = new TreeMap<>();
+    private TreeMap<String, User> assistantTreeMap = new TreeMap<>();
     private TreeMap<String, Task> taskTreeMap = new TreeMap<>();
     private TreeMap<String, User> studentTreeMap = new TreeMap<>();
 
@@ -66,7 +65,13 @@ public class Course {
     }
 
     public void addAdmin(String id) {
-        adminTreeMap.put(id, Data.getUser(id));
+        User user = Data.getUser(id);
+        adminTreeMap.put(id, user);
+        if (user instanceof Professor) {
+            teacherTreeMap.put(id, user);
+        } else {
+            assistantTreeMap.put(id, user);
+        }
     }
 
     public boolean isAdminIdExist(String id) {
@@ -75,26 +80,23 @@ public class Course {
 
     public void removeAdmin(String id) {
         adminTreeMap.remove(id);
+        if (Professor.isTeacher(id)) {
+            teacherTreeMap.remove(id);
+        } else {
+            assistantTreeMap.remove(id);
+        }
     }
 
     public int getStudentNum() {
-        return studentNum;
+        return studentTreeMap.size();
     }
 
     public int getAssistantNum() {
-        return AssistantNum;
+        return assistantTreeMap.size();
     }
 
     public int getTeacherNum() {
-        return teacherNum;
-    }
-
-    public void teacherNumPlusOne() {
-        teacherNum++;
-    }
-
-    public void teacherNumMinusOne() {
-        teacherNum--;
+        return teacherTreeMap.size();
     }
 
     public String getId() {
@@ -147,7 +149,7 @@ public class Course {
     public static void listStudent(TreeMap<String, User> studentTreeMap) {
         studentTreeMap.forEach((id, student) -> {
             System.out.println("[ID:" + student.getId() +
-                    "] [Name" + student.getLastName() +
+                    "] [Name:" + student.getLastName() +
                     " " + student.getFirstName() +
                     "] [Email:" + student.getEmail() +
                     "]");

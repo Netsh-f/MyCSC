@@ -1,7 +1,7 @@
 package com.buaa.function;
 
 import com.buaa.data.Course;
-import com.buaa.data.Professor;
+import com.buaa.data.Data;
 import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
@@ -31,12 +31,17 @@ public class RemoveAdmin extends Function {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
-            } else if (!Course.isIdLegal(id)) {
+            } else if (!User.isIdLegal(id)) {
                 System.out.println("user id illegal");
             } else if (!currentCourse.isAdminIdExist(id)) {
                 System.out.println("user id not exist");
             } else {
                 currentCourse.removeAdmin(id);
+                User user = Data.getUser(id);
+                user.removeManagerCourse(currentCourse.getId());
+                if(Data.getUser(id).getManagerCourseTreeMap().size()==0){
+                    Data.getUser(id).setAssistant(false);
+                }
                 System.out.println("remove admin success");
             }
         }

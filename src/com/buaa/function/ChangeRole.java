@@ -24,7 +24,7 @@ public class ChangeRole extends Function {
             User currentUser = UserOperation.getCurrentUser();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if ((currentUser instanceof Professor) || !currentUser.isAssistant()) {
+            } else if (!currentUser.isAssistant()) {
                 System.out.println("permission denied");
             } else {
                 if (UserOperation.isAssistant()) {

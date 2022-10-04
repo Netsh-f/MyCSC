@@ -30,13 +30,13 @@ public class AddTask extends Function {
                 System.out.println("not logged in");
             }else if(!UserOperation.isManager()){
                 System.out.println("permission denied");
-            }else if(!UserOperation.isNoCourse()){
+            }else if(UserOperation.isNoCourse()){
                 System.out.println("no course selected");
             }else if(!Task.isIdLegal(id, currentCourse.getId())){
                 System.out.println("task id illegal");
             }else if(Data.isTaskIdExist(id)){
                 System.out.println("task id duplication");
-            }else if(Task.isNameLegal(name)){
+            }else if(!Task.isNameLegal(name)){
                 System.out.println("task name illegal");
             }else if(!Task.isTimeLegal(startTime, endTime)){
                 System.out.println("task time illegal");

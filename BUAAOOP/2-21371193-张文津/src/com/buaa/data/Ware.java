@@ -33,11 +33,11 @@ public class Ware {
     }
 
     public static boolean isIdLegal(String id, String courseId) {
-        Pattern pattern = Pattern.compile("^W(\\d{4})\\d{2}$");
-        Matcher matcher = pattern.matcher(id);
-        if (matcher.find()) {
+        Matcher matcher1 = Pattern.compile("^W(\\d{4})\\d{2}$").matcher(id);
+        Matcher matcher2 = Pattern.compile("^C(\\d{4})$").matcher(courseId);
+        if (matcher1.find() && matcher2.find()) {
             return id.matches("^W(1[7-9]|2[0-2])([1-9]\\d|0[1-9])([1-9]\\d|0[1-9])$")
-                    && courseId.equals(matcher.group(1));
+                    && matcher2.group(1).equals(matcher1.group(1));
         }
         return false;
     }

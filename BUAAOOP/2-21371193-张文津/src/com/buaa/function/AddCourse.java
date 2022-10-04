@@ -38,7 +38,7 @@ public class AddCourse extends Function {
                 System.out.println("course name illegal");
             } else {
                 Course course = new Course(id, name);
-                ((Professor) currentUser).addCourse(course);
+                currentUser.addManagerCourse(course);
                 course.addAdmin(currentUser.getId());
                 Data.addCourse(course);
                 System.out.println("add course success");

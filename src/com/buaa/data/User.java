@@ -10,7 +10,7 @@ public class User {
     private String password;
     private String type;
     private boolean assistant = false;
-    private final TreeMap<String, Course> courseTreeMap = new TreeMap<>();
+    private final TreeMap<String, Course> managerCourseTreeMap = new TreeMap<>();
     private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
 
     public void removeStudentCourse(String id) {
@@ -25,33 +25,33 @@ public class User {
         return email;
     }
 
-    public void addCourse(Course course) {
-        courseTreeMap.put(course.getId(), course);
+    public void addManagerCourse(Course course) {
+        managerCourseTreeMap.put(course.getId(), course);
     }
 
-    public TreeMap<String, Course> getCourseTreeMap() {
-        return courseTreeMap;
+    public TreeMap<String, Course> getManagerCourseTreeMap() {
+        return managerCourseTreeMap;
     }
 
     public boolean isCourseIdExist(String id) {
-        return courseTreeMap.containsKey(id);
+        return managerCourseTreeMap.containsKey(id);
     }
 
-    public void removeCourse(String id) {
-        courseTreeMap.remove(id);
+    public void removeManagerCourse(String id) {
+        managerCourseTreeMap.remove(id);
     }
 
     public Course getCourse(String id) {
-        return courseTreeMap.get(id);
+        return managerCourseTreeMap.get(id);
     }
 
     public boolean isCourseTreeMapEmpty() {
-        return courseTreeMap.isEmpty();
+        return managerCourseTreeMap.isEmpty();
     }
 
-    public void setAssistant() {
-        assistant = true;
-        type = "Assistant";
+    public void setAssistant(boolean flag) {
+        assistant = flag;
+        type = flag ? "Assistant" : "Student";
     }
 
     public boolean isAssistant() {

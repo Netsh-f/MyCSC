@@ -85,6 +85,7 @@ public class UserOperation {
         cmdMap.put("selectCourse", SelectCourse.getInstance());
         cmdMap.put("addAdmin", AddAdmin.getInstance());
         cmdMap.put("removeAdmin", RemoveAdmin.getInstance());
+        cmdMap.put("listAdmin", ListAdmin.getInstance());
         cmdMap.put("changeRole", ChangeRole.getInstance());
         cmdMap.put("addWare", AddWare.getInstance());
         cmdMap.put("removeWare", RemoveWare.getInstance());

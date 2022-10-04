@@ -20,7 +20,6 @@ public class RemoveWare extends Function {
         if (parameterList.size() != 1) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
             Course currentCourse = UserOperation.getCurrentCourse();
             String id = parameterList.get(0);
             if (UserOperation.isNoUser()) {

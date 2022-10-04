@@ -30,7 +30,7 @@ public class ListCourse extends Function {
             } else if (((Professor) currentUser).isCourseTreeMapEmpty()) {
                 System.out.println("course not exist");
             } else {
-                Course.listCourse(((Professor) currentUser).getCourseTreeMap());
+                Course.listCourse(((Professor) currentUser).getManagerCourseTreeMap());
             }
         }
     }
