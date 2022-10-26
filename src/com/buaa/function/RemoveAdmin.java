@@ -42,7 +42,7 @@ public class RemoveAdmin extends Function {
                 user.removeManagerCourse(currentCourse.getId());//从这个人的管理课表中删除课程
                 //如果这个人是学生（助教）且没有别的管理的课程，解除助教身份
                 if (user.getManagerCourseTreeMap().size() == 0 && user instanceof Student) {
-                    user.setAssistant(false);
+                    ((Student) user).setAssistant(false);
                 }
                 System.out.println("remove admin success");
             }

@@ -48,7 +48,7 @@ public class AddStudent extends Function {
                 if (legalFlag) {
                     for (String id : parameterList) {
                         currentCourse.addStudent(Data.getUser(id));
-                        Data.getUser(id).addStudentCourse(currentCourse);
+                        ((Student) Data.getUser(id)).addStudentCourse(currentCourse);
                     }
                     System.out.println("add student success");
                 }

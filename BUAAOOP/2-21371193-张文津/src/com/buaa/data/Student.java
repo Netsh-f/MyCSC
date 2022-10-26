@@ -1,7 +1,37 @@
 package com.buaa.data;
 
-public class Student extends User {
+import com.buaa.main.UserOperation;
 
+import java.util.TreeMap;
+
+public class Student extends User {
+    private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
+    private boolean assistant = false;
+
+    public void setAssistant(boolean flag) {
+        assistant = flag;
+        if (flag) {
+            super.setType("Assistant");
+        } else {
+            super.setType("Student");
+            //如果解除助教身份的时候，正好是该学生正在使用助教端，那么强制返回到学生端
+            if (this == UserOperation.getCurrentUser() && UserOperation.isAssistantRole()) {
+                UserOperation.changeRole();
+            }
+        }
+    }
+
+    public boolean isAssistant() {
+        return assistant;
+    }
+
+    public void removeStudentCourse(String id) {
+        studentCourseTreeMap.remove(id);
+    }
+
+    public void addStudentCourse(Course course) {
+        studentCourseTreeMap.put(course.getId(), course);
+    }
 
     public Student(String id, String firstName, String lastName, String emailAddress, String password) {
         super(id, firstName, lastName, emailAddress, password);

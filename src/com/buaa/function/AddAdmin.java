@@ -48,7 +48,7 @@ public class AddAdmin extends Function {
                         user.addManagerCourse(currentCourse);//给这个人添加管理的课程
 
                         if (user instanceof Student) {//如果这个人是学生，设置为助教
-                            user.setAssistant(true);
+                            ((Student) user).setAssistant(true);
                         }
                     }
                     System.out.println("add admin success");

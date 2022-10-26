@@ -1,5 +1,6 @@
 package com.buaa.function;
 
+import com.buaa.data.Student;
 import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
@@ -23,7 +24,9 @@ public class ChangeRole extends Function {
             User currentUser = UserOperation.getCurrentUser();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!currentUser.isAssistant()) {
+            } else if (!(currentUser instanceof Student)) {
+                System.out.println("permission denied");
+            } else if (!((Student) currentUser).isAssistant()) {
                 System.out.println("permission denied");
             } else {
                 if (UserOperation.isAssistantRole()) {

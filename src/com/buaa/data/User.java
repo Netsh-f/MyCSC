@@ -11,17 +11,17 @@ public class User {
     private String email;
     private String password;
     private String type;
-    private boolean assistant = false;
     private final TreeMap<String, Course> managerCourseTreeMap = new TreeMap<>();
-    private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
+//    private boolean assistant = false;
+//    private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
 
-    public void removeStudentCourse(String id) {
-        studentCourseTreeMap.remove(id);
-    }
-
-    public void addStudentCourse(Course course) {
-        studentCourseTreeMap.put(course.getId(), course);
-    }
+//    public void removeStudentCourse(String id) {
+//        studentCourseTreeMap.remove(id);
+//    }
+//
+//    public void addStudentCourse(Course course) {
+//        studentCourseTreeMap.put(course.getId(), course);
+//    }
 
     public String getEmail() {
         return email;
@@ -35,7 +35,7 @@ public class User {
         return managerCourseTreeMap;
     }
 
-    public boolean isCourseIdExist(String id) {
+    public boolean isManagerCourseIdExist(String id) {
         return managerCourseTreeMap.containsKey(id);
     }
 
@@ -43,30 +43,30 @@ public class User {
         managerCourseTreeMap.remove(id);
     }
 
-    public Course getCourse(String id) {
+    public Course getManagerCourse(String id) {
         return managerCourseTreeMap.get(id);
     }
 
-    public boolean isCourseTreeMapEmpty() {
+    public boolean isManagerCourseTreeMapEmpty() {
         return managerCourseTreeMap.isEmpty();
     }
 
-    public void setAssistant(boolean flag) {
-        assistant = flag;
-        if (flag) {
-            type = "Assistant";
-        } else {
-            type = "Student";
-            //如果解除助教身份的时候，正好是该学生正在使用助教端，那么强制返回到学生端
-            if (this == UserOperation.getCurrentUser() && UserOperation.isAssistantRole()) {
-                UserOperation.changeRole();
-            }
-        }
-    }
-
-    public boolean isAssistant() {
-        return assistant;
-    }
+//    public void setAssistant(boolean flag) {
+//        assistant = flag;
+//        if (flag) {
+//            type = "Assistant";
+//        } else {
+//            type = "Student";
+//            //如果解除助教身份的时候，正好是该学生正在使用助教端，那么强制返回到学生端
+//            if (this == UserOperation.getCurrentUser() && UserOperation.isAssistantRole()) {
+//                UserOperation.changeRole();
+//            }
+//        }
+//    }
+//
+//    public boolean isAssistant() {
+//        return assistant;
+//    }
 
     @Override
     public String toString() {

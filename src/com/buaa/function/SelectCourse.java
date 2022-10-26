@@ -1,7 +1,6 @@
 package com.buaa.function;
 
 import com.buaa.data.Course;
-import com.buaa.data.Professor;
 import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
@@ -31,10 +30,10 @@ public class SelectCourse extends Function {
                 System.out.println("permission denied");
             } else if (!Course.isIdLegal(id)) {
                 System.out.println("course id illegal");
-            } else if (!currentUser.isCourseIdExist(id)) {
+            } else if (!currentUser.isManagerCourseIdExist(id)) {
                 System.out.println("course id not exist");
             } else {
-                UserOperation.setCurrentCourse(currentUser.getCourse(id));//从当前用户的课程中获取课程，给当前课程
+                UserOperation.setCurrentCourse(currentUser.getManagerCourse(id));//从当前用户的课程中获取课程，给当前课程
                 System.out.println("select course success");
             }
         }

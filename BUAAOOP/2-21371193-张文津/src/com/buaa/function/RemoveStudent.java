@@ -1,9 +1,6 @@
 package com.buaa.function;
 
-import com.buaa.data.Course;
-import com.buaa.data.Data;
-import com.buaa.data.Professor;
-import com.buaa.data.User;
+import com.buaa.data.*;
 import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
@@ -37,7 +34,7 @@ public class RemoveStudent extends Function {
                 System.out.println("user id not exist");
             } else {
                 currentCourse.removeStudent(id);
-                Data.getUser(id).removeStudentCourse(currentCourse.getId());
+                ((Student) Data.getUser(id)).removeStudentCourse(currentCourse.getId());
                 System.out.println("remove student success");
             }
         }

@@ -27,7 +27,7 @@ public class ListCourse extends Function {
                 System.out.println("not logged in");
             } else if (!UserOperation.isProfessor()) {
                 System.out.println("permission denied");
-            } else if (((Professor) currentUser).isCourseTreeMapEmpty()) {
+            } else if (((Professor) currentUser).isManagerCourseTreeMapEmpty()) {
                 System.out.println("course not exist");
             } else {
                 Course.listCourse(((Professor) currentUser).getManagerCourseTreeMap());
