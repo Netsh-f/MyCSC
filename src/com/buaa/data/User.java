@@ -23,6 +23,10 @@ public class User {
 //        studentCourseTreeMap.put(course.getId(), course);
 //    }
 
+    public boolean isAssistant(){
+        return type.equals("Assistant");
+    }
+
     public String getEmail() {
         return email;
     }

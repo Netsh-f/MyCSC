@@ -6,10 +6,10 @@ import java.util.TreeMap;
 
 public class Student extends User {
     private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
-    private boolean assistant = false;
+//    private boolean assistant = false;
 
     public void setAssistant(boolean flag) {
-        assistant = flag;
+//        assistant = flag;
         if (flag) {
             super.setType("Assistant");
         } else {
@@ -21,9 +21,9 @@ public class Student extends User {
         }
     }
 
-    public boolean isAssistant() {
-        return assistant;
-    }
+//    public boolean isAssistant() {
+//        return assistant;
+//    }
 
     public void removeStudentCourse(String id) {
         studentCourseTreeMap.remove(id);
