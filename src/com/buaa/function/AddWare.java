@@ -1,6 +1,7 @@
 package com.buaa.function;
 
 import com.buaa.data.Course;
+import com.buaa.data.Data;
 import com.buaa.data.Ware;
 import com.buaa.main.UserOperation;
 
@@ -25,7 +26,7 @@ public class AddWare extends Function {
         } else {
             try {
                 Course currentCourse = UserOperation.getCurrentCourse();
-                String id = parameterList.get(0);
+                String wareId = parameterList.get(0);
                 String inLocation = parameterList.get(1);
                 if (UserOperation.isNoUser()) {
                     System.out.println("not logged in");
@@ -33,11 +34,11 @@ public class AddWare extends Function {
                     System.out.println("permission denied");
                 } else if (UserOperation.isNoCourse()) {
                     System.out.println("no course selected");
-                } else if (!Ware.isIdLegal(id, currentCourse.getId())) {
+                } else if (!Ware.isIdLegal(wareId, currentCourse.getId())) {
                     System.out.println("ware id illegal");
                 } else {
                     File inFile = new File(inLocation);
-                    File rootOutFile = new File("./data/" + id + "/wares");
+                    File rootOutFile = new File("./data/" + Ware.wareIdToCourseId(wareId) + "/wares");
                     if (!inFile.exists()) {
                         System.out.println("ware file does not exist");
                     } else {
@@ -47,6 +48,9 @@ public class AddWare extends Function {
                         OutputStream out = new FileOutputStream(rootOutFile + "/" + inFile.getName());
                         try {
                             Files.copy(inFile.toPath(), out);
+                            Ware ware = new Ware(wareId, inFile.getName(), rootOutFile + "/" + inFile.getName());
+                            Data.addWare(ware);
+                            currentCourse.addWare(ware);
                             System.out.println("add ware success");
                         } catch (Exception e) {
                             System.out.println("ware file operation failed");

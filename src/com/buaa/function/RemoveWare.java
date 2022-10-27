@@ -3,6 +3,7 @@ package com.buaa.function;
 import com.buaa.data.*;
 import com.buaa.main.UserOperation;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class RemoveWare extends Function {
@@ -28,16 +29,21 @@ public class RemoveWare extends Function {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
-            }
-//            } else if (!Ware.isIdLegal(id, currentCourse.getId())) {
-//                System.out.println("ware id illegal");
-//            } else if (!currentCourse.isWareIdExist(id)) {
-//                System.out.println("ware id not exist");
-//            }
-            else {
-                currentCourse.removeWare(id);
-                Data.removeWare(id);
-                System.out.println("remove ware success");
+            } else if (!currentCourse.isWareIdExist(id)) {
+                System.out.println("ware not found");
+            } else {
+                try {
+                    File fileToDelete = new File(currentCourse.getWareTreeMap().get(id).getLocation());
+                    if (fileToDelete.delete()) {
+                        currentCourse.removeWare(id);
+                        Data.removeWare(id);
+                        System.out.println("remove ware success");
+                    } else {
+                        throw new Exception();
+                    }
+                } catch (Exception e) {
+                    System.out.println("delete file failed");
+                }
             }
         }
     }

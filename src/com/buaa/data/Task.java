@@ -1,7 +1,9 @@
 package com.buaa.data;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,16 +14,38 @@ public class Task {
     private String startTime;
     private String endTime;
     private int receiveNum;
+    private String location;
+    private ArrayList<String> receivedStudentArrayList = new ArrayList<>();
 
-    public static void listTask(TreeMap<String, Task> taskTreeMap) {
-        taskTreeMap.forEach((id, task) -> {
-            System.out.println("[ID:" + id +
+    public static void managerListTask(TreeMap<String, Task> taskTreeMap, Course course) {
+        int studentNum = course.getStudentNum();
+        for (Map.Entry<String, Task> entry : taskTreeMap.entrySet()) {
+            String key = entry.getKey();
+            Task task = entry.getValue();
+            System.out.println("[ID:" + key +
                     "] [Name:" + task.getName() +
-                    "] [ReceiveNum:" + task.getReceiveNum() +
+                    "] [SubmissionStatus:" + task.getReceiveNum() + "/" + studentNum +
                     "] [StartTime:" + task.getStartTime() +
                     "] [EndTime:" + task.getEndTime() +
                     "]");
-        });
+        }
+    }
+
+    public static void studentListTask(TreeMap<String, Task> taskTreeMap, Student student) {
+        for (Map.Entry<String, Task> entry : taskTreeMap.entrySet()) {
+            String key = entry.getKey();
+            Task task = entry.getValue();
+            System.out.println("[ID:" + key +
+                    "] [Name:" + task.getName() +
+//                    "] [SubmissionStatus:" + task.
+                    "] [StartTime:" + task.getStartTime() +
+                    "] [EndTime:" + task.getEndTime() +
+                    "]");
+        }
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public String getName() {
@@ -76,10 +100,18 @@ public class Task {
         return false;
     }
 
-    public Task(String id, String name, String startTime, String endTime) {
+    public Task(String id, String name, String startTime, String endTime, String location) {
         this.id = id;
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.location = location;
     }
+
+//    public Task(String id, String name, String startTime, String endTime) {
+//        this.id = id;
+//        this.name = name;
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//    }
 }

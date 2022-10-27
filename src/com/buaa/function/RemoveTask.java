@@ -3,6 +3,7 @@ package com.buaa.function;
 import com.buaa.data.*;
 import com.buaa.main.UserOperation;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class RemoveTask extends Function {
@@ -17,26 +18,32 @@ public class RemoveTask extends Function {
 
     @Override
     public void run(ArrayList<String> parameterList) {
-        if(parameterList.size()!=1){
+        if (parameterList.size() != 1) {
             System.out.println("arguments illegal");
-        }else{
-            User currentUser = UserOperation.getCurrentUser();
+        } else {
             Course currentCourse = UserOperation.getCurrentCourse();
-            String id = parameterList.get(0);
-            if(UserOperation.isNoUser()){
+            String taskId = parameterList.get(0);
+            if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            }else if(!UserOperation.isManager()){
+            } else if (!UserOperation.isManager()) {
                 System.out.println("permission denied");
-            }else if(UserOperation.isNoCourse()){
+            } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
-            }else if(!Task.isIdLegal(id, currentCourse.getId())){
-                System.out.println("task id illegal");
-            }else if(!currentCourse.isTaskIdExist(id)){
-                System.out.println("task id not exist");
-            }else{
-                Data.removeTask(id);
-                currentCourse.removeTask(id);
-                System.out.println("remove task success");
+            } else if (!currentCourse.isTaskIdExist(taskId)) {
+                System.out.println("task not found");
+            } else {
+                try {
+                    File fileToDelete = new File(currentCourse.getTaskTreeMap().get(taskId).getLocation());
+                    if (fileToDelete.delete()) {
+                        Data.removeTask(taskId);
+                        currentCourse.removeTask(taskId);
+                        System.out.println("remove task success");
+                    } else {
+                        throw new Exception();
+                    }
+                } catch (Exception e) {
+                    System.out.println("delete file failed");
+                }
             }
         }
     }
