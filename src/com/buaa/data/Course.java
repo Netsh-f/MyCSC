@@ -135,7 +135,17 @@ public class Course {
         });
     }
 
-    public static void listAdmin(TreeMap<String, User> adminTreeMap) {
+    public static void studentListAdmin(TreeMap<String, User> adminTreeMap) {
+        adminTreeMap.forEach((id, user) -> {
+            System.out.println("[Name:" + user.getLastName() +
+                    " " + user.getFirstName() +
+                    "] [Type:" + user.getType() +
+                    "] [Email:" + user.getEmail() +
+                    "]");
+        });
+    }
+
+    public static void managerListAdmin(TreeMap<String, User> adminTreeMap) {
         adminTreeMap.forEach((id, user) -> {
             System.out.println("[ID:" + user.getId() +
                     "] [Name:" + user.getLastName() +

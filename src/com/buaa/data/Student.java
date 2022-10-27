@@ -2,6 +2,7 @@ package com.buaa.data;
 
 import com.buaa.main.UserOperation;
 
+import java.util.Comparator;
 import java.util.TreeMap;
 
 public class Student extends User {
@@ -24,6 +25,10 @@ public class Student extends User {
 //    public boolean isAssistant() {
 //        return assistant;
 //    }
+
+    public TreeMap<String, Course> getStudentCourseTreeMap() {
+        return studentCourseTreeMap;
+    }
 
     public void removeStudentCourse(String id) {
         studentCourseTreeMap.remove(id);
