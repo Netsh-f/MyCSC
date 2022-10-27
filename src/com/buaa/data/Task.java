@@ -15,32 +15,50 @@ public class Task {
     private String endTime;
     private int receiveNum;
     private String location;
-    private ArrayList<String> receivedStudentArrayList = new ArrayList<>();
+    private ArrayList<String> studentReceivedArrayList = new ArrayList<>();
+
+    public boolean isStudentReceived(String id) {
+        return studentReceivedArrayList.contains(id);
+    }
 
     public static void managerListTask(TreeMap<String, Task> taskTreeMap, Course course) {
-        int studentNum = course.getStudentNum();
-        for (Map.Entry<String, Task> entry : taskTreeMap.entrySet()) {
-            String key = entry.getKey();
-            Task task = entry.getValue();
-            System.out.println("[ID:" + key +
-                    "] [Name:" + task.getName() +
-                    "] [SubmissionStatus:" + task.getReceiveNum() + "/" + studentNum +
-                    "] [StartTime:" + task.getStartTime() +
-                    "] [EndTime:" + task.getEndTime() +
-                    "]");
+        if (taskTreeMap.isEmpty()) {
+            System.out.println("total 0 task");
+        } else {
+            int studentNum = course.getStudentNum();
+            for (Map.Entry<String, Task> entry : taskTreeMap.entrySet()) {
+                String key = entry.getKey();
+                Task task = entry.getValue();
+                System.out.println("[ID:" + key +
+                        "] [Name:" + task.getName() +
+                        "] [SubmissionStatus:" + task.getReceiveNum() + "/" + studentNum +
+                        "] [StartTime:" + task.getStartTime() +
+                        "] [EndTime:" + task.getEndTime() +
+                        "]");
+            }
         }
     }
 
     public static void studentListTask(TreeMap<String, Task> taskTreeMap, Student student) {
-        for (Map.Entry<String, Task> entry : taskTreeMap.entrySet()) {
-            String key = entry.getKey();
-            Task task = entry.getValue();
-            System.out.println("[ID:" + key +
-                    "] [Name:" + task.getName() +
-//                    "] [SubmissionStatus:" + task.
-                    "] [StartTime:" + task.getStartTime() +
-                    "] [EndTime:" + task.getEndTime() +
-                    "]");
+        if (taskTreeMap.isEmpty()) {
+            System.out.println("total 0 task");
+        } else {
+            for (Map.Entry<String, Task> entry : taskTreeMap.entrySet()) {
+                String key = entry.getKey();
+                Task task = entry.getValue();
+                String status;
+                if (task.isStudentReceived(student.getId())) {
+                    status = "done";
+                } else {
+                    status = "undone";
+                }
+                System.out.println("[ID:" + key +
+                        "] [Name:" + task.getName() +
+                        "] [SubmissionStatus:" + status +
+                        "] [StartTime:" + task.getStartTime() +
+                        "] [EndTime:" + task.getEndTime() +
+                        "]");
+            }
         }
     }
 
