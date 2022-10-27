@@ -24,15 +24,17 @@ public class RemoveWare extends Function {
             String id = parameterList.get(0);
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!UserOperation.isProfessor()) {
+            } else if (!UserOperation.isManager()) {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
-            } else if (!Ware.isIdLegal(id, currentCourse.getId())) {
-                System.out.println("ware id illegal");
-            } else if (!currentCourse.isWareIdExist(id)) {
-                System.out.println("ware id not exist");
-            } else {
+            }
+//            } else if (!Ware.isIdLegal(id, currentCourse.getId())) {
+//                System.out.println("ware id illegal");
+//            } else if (!currentCourse.isWareIdExist(id)) {
+//                System.out.println("ware id not exist");
+//            }
+            else {
                 currentCourse.removeWare(id);
                 Data.removeWare(id);
                 System.out.println("remove ware success");
