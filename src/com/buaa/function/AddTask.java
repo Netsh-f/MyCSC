@@ -2,6 +2,7 @@ package com.buaa.function;
 
 import com.buaa.data.*;
 import com.buaa.main.UserOperation;
+import com.buaa.utils.FileHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,7 +27,7 @@ public class AddTask extends Function {
         } else {
             Course currentCourse = UserOperation.getCurrentCourse();
             String taskId = parameterList.get(0);
-            String location = parameterList.get(1);
+            String sourcePath = parameterList.get(1);
             String startTime = parameterList.get(2);
             String endTime = parameterList.get(3);
             if (UserOperation.isNoUser()) {
@@ -40,24 +41,21 @@ public class AddTask extends Function {
             } else if (!Task.isTimeLegal(startTime, endTime)) {
                 System.out.println("task time illegal");
             } else {
-                try {
-                    File inFile = new File(location);
-                    File rootOutFile = new File("./data/" + currentCourse.getId() + "/tasks/" + taskId);
-                    if (!inFile.exists()) {
-                        System.out.println("task file not found");
-                    } else {
-                        if (!rootOutFile.exists()) {
-                            rootOutFile.mkdirs();
-                        }
-                        OutputStream out = new FileOutputStream(rootOutFile + "/" + inFile.getName());
-                        Files.copy(inFile.toPath(), out);
-                        Task task = new Task(taskId, inFile.getName(), startTime, endTime, rootOutFile + "/" + inFile.getName());
+                if (!FileHelper.isFileExist(sourcePath)) {
+                    System.out.println("task file not found");
+                } else {
+                    try {
+                        String sourceFileName = FileHelper.getFileName(sourcePath);
+                        String destPath = "./data/" + currentCourse.getId() + "/wares/" +
+                                taskId + "/" + sourceFileName;
+                        FileHelper.copyFile(sourcePath, destPath);
+                        Task task = new Task(taskId, sourceFileName, startTime, endTime, destPath);
                         Data.addTask(task);
                         currentCourse.addTask(task);
                         System.out.println("add task success");
+                    } catch (Exception e) {
+                        System.out.println("file operation failed");
                     }
-                } catch (Exception e) {
-                    System.out.println("file operation failed");
                 }
             }
         }

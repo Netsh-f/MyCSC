@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 public class Ware {
     private String id;
     private String name;
-    private String location;
+    private String filePath;
 
-    public String getLocation() {
-        return location;
+    public String getFilePath() {
+        return filePath;
     }
 
     public static String wareIdToCourseId(String wareId) {
@@ -24,7 +24,7 @@ public class Ware {
     public Ware(String id, String name, String location) {
         this.id = id;
         this.name = name;
-        this.location = location;
+        this.filePath = location;
     }
 
 //    public Ware(String id, String name) {

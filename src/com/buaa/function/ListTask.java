@@ -1,7 +1,9 @@
 package com.buaa.function;
 
 import com.buaa.data.Course;
+import com.buaa.data.Student;
 import com.buaa.data.Task;
+import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
 import java.util.ArrayList;
@@ -22,12 +24,17 @@ public class ListTask extends Function {
             System.out.println("arguments illegal");
         } else {
             Course currentCourse = UserOperation.getCurrentCourse();
+            User currentUser = UserOperation.getCurrentUser();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
             } else {
-                Task.managerListTask(currentCourse.getTaskTreeMap(), currentCourse);
+                if (UserOperation.isManager()) {
+                    Task.managerListTask(currentCourse.getTaskTreeMap(), currentCourse);
+                } else {
+                    Task.studentListTask(currentCourse.getTaskTreeMap(), (Student) currentUser);
+                }
             }
         }
     }

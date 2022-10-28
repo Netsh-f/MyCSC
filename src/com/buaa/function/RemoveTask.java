@@ -2,8 +2,8 @@ package com.buaa.function;
 
 import com.buaa.data.*;
 import com.buaa.main.UserOperation;
+import com.buaa.utils.FileHelper;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class RemoveTask extends Function {
@@ -33,15 +33,12 @@ public class RemoveTask extends Function {
                 System.out.println("task not found");
             } else {
                 try {
-                    File fileToDelete = new File(currentCourse.getTaskTreeMap().get(taskId).getLocation());
-                    if (fileToDelete.delete()) {
-                        Data.removeTask(taskId);
-                        currentCourse.removeTask(taskId);
-                        System.out.println("remove task success");
-                    } else {
-                        throw new Exception();
-                    }
-                } catch (Exception e) {
+                    String filePath = currentCourse.getTask(taskId).getFilePath();
+                    FileHelper.deleteFile(filePath);
+                    Data.removeTask(taskId);
+                    currentCourse.removeTask(taskId);
+                    System.out.println("remove task success");
+                }catch (Exception e){
                     System.out.println("delete file failed");
                 }
             }

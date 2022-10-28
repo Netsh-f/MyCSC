@@ -14,7 +14,7 @@ public class Task {
     private String startTime;
     private String endTime;
     private int receiveNum;
-    private String location;
+    private String filePath;
     private ArrayList<String> studentReceivedArrayList = new ArrayList<>();
 
     public boolean isStudentReceived(String id) {
@@ -62,8 +62,8 @@ public class Task {
         }
     }
 
-    public String getLocation() {
-        return location;
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getName() {
@@ -123,7 +123,7 @@ public class Task {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.location = location;
+        this.filePath = location;
     }
 
 //    public Task(String id, String name, String startTime, String endTime) {

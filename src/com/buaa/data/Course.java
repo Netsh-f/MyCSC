@@ -16,6 +16,14 @@ public class Course {
         return studentTreeMap;
     }
 
+    public Ware getWare(String id) {
+        return wareTreeMap.get(id);
+    }
+
+    public Task getTask(String id) {
+        return taskTreeMap.get(id);
+    }
+
     public void removeStudent(String id) {
         studentTreeMap.remove(id);
     }
