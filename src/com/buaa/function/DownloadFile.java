@@ -36,6 +36,7 @@ public class DownloadFile extends Function {
                 break;
             }
         }
+
         if (redirectFlag) {
             if (redirectPos + 1 >= parameterList.size()) {
                 System.out.println("please input the path to redirect the file");
@@ -51,6 +52,7 @@ public class DownloadFile extends Function {
             parameterList.remove(redirectPos);
             parameterList.remove(redirectPos);//把重定向符号和后面的路径删除
         }
+
         if (!(parameterList.size() == 2 || (parameterList.size() == 1 && redirectFlag))) {
             System.out.println("arguments illegal");
         } else {

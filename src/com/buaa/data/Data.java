@@ -8,6 +8,11 @@ public class Data {
     private static final HashMap<String, Course> courseHashMap = new HashMap<>();
     private static final HashMap<String, Ware> wareHashMap = new HashMap<>();
     private static final HashMap<String, Task> taskHashMap = new HashMap<>();
+    private static final HashMap<String, Work> workHashMap = new HashMap<>();
+
+    public static void addWork(Work work) {
+        workHashMap.put(work.getStudentId(), work);
+    }
 
     public static void removeTask(String id) {
         taskHashMap.remove(id);

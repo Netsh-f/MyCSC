@@ -1,7 +1,8 @@
 package com.buaa.data;
 
+import com.buaa.utils.FileHelper;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,10 +16,23 @@ public class Task {
     private String endTime;
     private int receiveNum;
     private String filePath;
-    private ArrayList<String> studentReceivedArrayList = new ArrayList<>();
+    private TreeMap<String, Work> workTreeMap = new TreeMap<>();
+    private Work answer;
 
-    public boolean isStudentReceived(String id) {
-        return studentReceivedArrayList.contains(id);
+    public double evaluateWork(Work work) {
+        if (answer == null) {
+            return -1;//-1即为None
+        } else {
+            return 100 * FileHelper.compareFiles(answer.getFilePath(), work.getFilePath());
+        }
+    }
+
+    public void addWrok(Work work){
+        workTreeMap.put(work.getStudentId(), work);
+    }
+
+    public boolean isStudentWorkReceived(String id) {
+        return workTreeMap.containsKey(id);
     }
 
     public static void managerListTask(TreeMap<String, Task> taskTreeMap, Course course) {
@@ -47,7 +61,7 @@ public class Task {
                 String key = entry.getKey();
                 Task task = entry.getValue();
                 String status;
-                if (task.isStudentReceived(student.getId())) {
+                if (task.isStudentWorkReceived(student.getId())) {
                     status = "done";
                 } else {
                     status = "undone";

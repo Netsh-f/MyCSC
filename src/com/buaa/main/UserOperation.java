@@ -97,6 +97,8 @@ public class UserOperation {
         cmdMap.put("removeStudent", RemoveStudent.getInstance());
         cmdMap.put("listStudent", ListStudent.getInstance());
         cmdMap.put("downloadFile", DownloadFile.getInstance());
+        cmdMap.put("openFile", OpenFile.getInstance());
+        cmdMap.put("submitTask", SubmitTask.getInstance());
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {

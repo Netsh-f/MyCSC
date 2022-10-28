@@ -4,6 +4,30 @@ import java.io.*;
 
 public class FileHelper {
 
+    //返回两个文件的“相似度”，相同行数/base文件总行数
+    public static double compareFiles(String baseFilePath, String testFilePath) {
+        try {
+            FileReader baseFileReader = new FileReader(baseFilePath);
+            FileReader testFileReader = new FileReader(testFilePath);
+            BufferedReader baseBufferReader = new BufferedReader(baseFileReader);
+            BufferedReader testBufferReader = new BufferedReader(testFileReader);
+            String baseLine;
+            String testLine;
+            int totalLineCnt = 0;
+            int sameLineCnt = 0;
+            while ((baseLine = baseBufferReader.readLine()) != null) {
+                totalLineCnt++;
+                testLine = testBufferReader.readLine();
+                if (testLine != null && testLine.equals(baseLine)) {
+                    sameLineCnt++;
+                }
+            }
+            return sameLineCnt * 1.0 / totalLineCnt;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
     public static void extraWriteFile(String sourcePath, String destPath) throws IOException {
         InputStream inputStream = null;
         RandomAccessFile randomAccessFile = null;
