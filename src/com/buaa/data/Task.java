@@ -19,6 +19,18 @@ public class Task {
     private TreeMap<String, Work> workTreeMap = new TreeMap<>();
     private Work answer;
 
+    public boolean isAnswerNull() {
+        return answer == null;
+    }
+
+    public TreeMap<String, Work> getWorkTreeMap() {
+        return workTreeMap;
+    }
+
+    public void setAnswer(Work answer) {
+        this.answer = answer;
+    }
+
     public double evaluateWork(Work work) {
         if (answer == null) {
             return -1;//-1即为None
@@ -27,7 +39,7 @@ public class Task {
         }
     }
 
-    public void addWrok(Work work){
+    public void addWrok(Work work) {
         workTreeMap.put(work.getStudentId(), work);
     }
 

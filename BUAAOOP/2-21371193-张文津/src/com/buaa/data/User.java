@@ -11,8 +11,8 @@ public class User {
     private String email;
     private String password;
     private String type;
-//    private boolean assistant = false;
     private final TreeMap<String, Course> managerCourseTreeMap = new TreeMap<>();
+//    private boolean assistant = false;
 //    private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
 
 //    public void removeStudentCourse(String id) {
@@ -22,6 +22,10 @@ public class User {
 //    public void addStudentCourse(Course course) {
 //        studentCourseTreeMap.put(course.getId(), course);
 //    }
+
+    public boolean isAssistant(){
+        return type.equals("Assistant");
+    }
 
     public String getEmail() {
         return email;
@@ -35,7 +39,7 @@ public class User {
         return managerCourseTreeMap;
     }
 
-    public boolean isCourseIdExist(String id) {
+    public boolean isManagerCourseIdExist(String id) {
         return managerCourseTreeMap.containsKey(id);
     }
 
@@ -43,11 +47,11 @@ public class User {
         managerCourseTreeMap.remove(id);
     }
 
-    public Course getCourse(String id) {
+    public Course getManagerCourse(String id) {
         return managerCourseTreeMap.get(id);
     }
 
-    public boolean isCourseTreeMapEmpty() {
+    public boolean isManagerCourseTreeMapEmpty() {
         return managerCourseTreeMap.isEmpty();
     }
 

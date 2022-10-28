@@ -16,6 +16,7 @@ public class Test {
         ArrayList<String> parameterList = new ArrayList<>();
         while (true) {
             command = scanner.nextLine();//读取新的命令
+            cmd = "";
             parameterList.removeAll(parameterList);//清空参数
             matcher = pattern.matcher(command);//匹配
             int i = 0;

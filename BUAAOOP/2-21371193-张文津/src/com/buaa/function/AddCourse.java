@@ -2,7 +2,6 @@ package com.buaa.function;
 
 import com.buaa.data.Course;
 import com.buaa.data.Data;
-import com.buaa.data.Professor;
 import com.buaa.data.User;
 import com.buaa.main.UserOperation;
 
@@ -32,7 +31,7 @@ public class AddCourse extends Function {
                 System.out.println("permission denied");
             } else if (!(Course.isIdLegal(id))) {
                 System.out.println("course id illegal");
-            } else if (currentUser.isCourseIdExist(id)) {
+            } else if (currentUser.isManagerCourseIdExist(id)) {
                 System.out.println("course id duplication");
             } else if (!(Course.isNameLegal(name))) {
                 System.out.println("course name illegal");

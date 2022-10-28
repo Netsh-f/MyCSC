@@ -1,7 +1,10 @@
 package com.buaa.function;
 
-import com.buaa.data.*;
+import com.buaa.data.Course;
+import com.buaa.data.Data;
+import com.buaa.data.Ware;
 import com.buaa.main.UserOperation;
+import com.buaa.utils.FileHelper;
 
 import java.util.ArrayList;
 
@@ -20,27 +23,38 @@ public class AddWare extends Function {
         if (parameterList.size() != 2) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
             Course currentCourse = UserOperation.getCurrentCourse();
-            String id = parameterList.get(0);
-            String name = parameterList.get(1);
+            String wareId = parameterList.get(0);
+            String sourcePath = parameterList.get(1);
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!UserOperation.isProfessor()) {
+            } else if (!UserOperation.isManager()) {
                 System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
-            } else if (!Ware.isIdLegal(id, currentCourse.getId())) {
+            } else if (!Ware.isIdLegal(wareId, currentCourse.getId())) {
                 System.out.println("ware id illegal");
-            } else if (Data.isWareIdExist(id)) {
-                System.out.println("ware id duplication");
-            } else if (!Ware.isNameLegal(name)) {
-                System.out.println("ware name illegal");
             } else {
-                Ware ware = new Ware(id, name);
-                Data.addWare(ware);
-                currentCourse.addWare(ware);
-                System.out.println("add ware success");
+                if (!FileHelper.isFileExist(sourcePath)) {
+                    System.out.println("ware file does not exist");
+                } else {
+                    try {
+                        String sourceFileName = FileHelper.getFileName(sourcePath);
+                        String destPath = "./data/" + Ware.wareIdToCourseId(wareId) + "/wares/" + sourceFileName;
+                        try {
+                            FileHelper.copyFile(sourcePath, destPath);
+                        } catch (Exception e) {
+                            System.out.println("ware file operation failed");
+                            return;
+                        }
+                        Ware ware = new Ware(wareId, sourceFileName, destPath);
+                        Data.addWare(ware);
+                        currentCourse.addWare(ware);
+                        System.out.println("add ware success");
+                    } catch (Exception e) {
+                        System.out.println("unexpected error");
+                    }
+                }
             }
         }
     }

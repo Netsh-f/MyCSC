@@ -27,8 +27,6 @@ public class ListWare extends Function {
             Course currentCourse = UserOperation.getCurrentCourse();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (!UserOperation.isManager()) {
-                System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
             } else {

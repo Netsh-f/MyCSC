@@ -7,14 +7,14 @@ import com.buaa.utils.FileHelper;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SubmitTask extends Function {
-    public static SubmitTask submitTask = new SubmitTask();
+public class AddAnswer extends Function {
+    private static AddAnswer addAnswer = new AddAnswer();
 
-    private SubmitTask() {
+    private AddAnswer() {
     }
 
-    public static final SubmitTask getInstance() {
-        return submitTask;
+    public static final AddAnswer getInstance() {
+        return addAnswer;
     }
 
     @Override
@@ -58,8 +58,8 @@ public class SubmitTask extends Function {
             }
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");
-            } else if (UserOperation.isManager()) {//如果不是学生（是老师或助教端）
-                System.out.println("operation not allowed");
+            } else if (!UserOperation.isManager()) {//如果管理端
+                System.out.println("permission denied");
             } else if (UserOperation.isNoCourse()) {
                 System.out.println("no course selected");
             } else if (!currentCourse.isTaskIdExist(taskId)) {
@@ -70,36 +70,14 @@ public class SubmitTask extends Function {
                         sourcePath = redirectPath;
                     }
                     //包含了重定向但被覆盖
-                    if (FileHelper.isFileExist(sourcePath)) {
-                        Scanner scanner = new Scanner(System.in);
-                        System.out.println("task already exists, do you want to overwrite it? (y/n)");
-                        String input = scanner.nextLine();
-                        if (!input.matches("^[yY]$")) {
-                            System.out.println("submit canceled");
-                            return;
-                        }
-                    }
 
-                    String destPath = "./data/" + currentCourse.getId() + "/tasks/" + taskId + "/" +
-                            currentUser.getId() + ".task";
+                    String destPath = "./data/" + currentCourse.getId() + "/answers/" + taskId + ".ans";
                     FileHelper.copyFile(sourcePath, destPath);
 
-                    Work work = new Work(currentUser.getId(), destPath);
+                    Work answer = new Work(currentUser.getId(), destPath);
                     Task currentTask = currentCourse.getTask(taskId);
-                    currentTask.addWrok(work);
-
-                    double score = currentCourse.getTask(taskId).evaluateWork(work);
-                    if (score > work.getHighestScore()) {
-                        work.setHighestScore(score);
-                    }
-                    String scoreString;
-                    if (score == -1) {
-                        scoreString = "None";
-                    } else {
-                        scoreString = String.format("%.1f", score);
-                    }
-                    System.out.println("submit success\n" +
-                            "your score is: " + scoreString);
+                    currentTask.setAnswer(answer);
+                    System.out.println("add answer success");
                 } catch (Exception e) {
                     System.out.println("file operation failed");
                 }
