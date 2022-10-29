@@ -40,6 +40,7 @@ public class RemoveWare extends Function {
                     System.out.println("remove ware success");
                 } catch (Exception e) {
                     System.out.println("delete file failed");
+                    e.printStackTrace();
                 }
             }
         }

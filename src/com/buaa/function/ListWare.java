@@ -23,7 +23,6 @@ public class ListWare extends Function {
         if (parameterList.size() != 0) {
             System.out.println("arguments illegal");
         } else {
-            User currentUser = UserOperation.getCurrentUser();
             Course currentCourse = UserOperation.getCurrentCourse();
             if (UserOperation.isNoUser()) {
                 System.out.println("not logged in");

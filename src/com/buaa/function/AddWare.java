@@ -39,6 +39,10 @@ public class AddWare extends Function {
                     System.out.println("ware file does not exist");
                 } else {
                     try {
+                        if(currentCourse.isWareIdExist(wareId)){
+                            FileHelper.deleteFile(currentCourse.getWare(wareId).getFilePath());
+                        }
+
                         String sourceFileName = FileHelper.getFileName(sourcePath);
                         String destPath = "./data/" + Ware.wareIdToCourseId(wareId) + "/wares/" +
                                 wareId + "_" + sourceFileName;

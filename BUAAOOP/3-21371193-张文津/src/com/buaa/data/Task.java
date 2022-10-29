@@ -34,7 +34,13 @@ public class Task {
         if (answer == null) {
             return -1;//-1即为None
         } else {
-            return 100 * FileHelper.compareFiles(answer.getFilePath(), work.getFilePath());
+            double score;
+            try {
+                score = 100 * FileHelper.compareFiles(answer.getFilePath(), work.getFilePath());
+            } catch (Exception e) {
+                score = -1;
+            }
+            return score;
         }
     }
 

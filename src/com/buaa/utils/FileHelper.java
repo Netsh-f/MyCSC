@@ -5,10 +5,13 @@ import java.io.*;
 public class FileHelper {
 
     //返回两个文件的“相似度”，相同行数/base文件总行数
-    public static double compareFiles(String baseFilePath, String testFilePath) {
+    public static double compareFiles(String baseFilePath, String testFilePath) throws IOException{
+        FileReader baseFileReader = null;
+        FileReader testFileReader = null;
+        double ans;
         try {
-            FileReader baseFileReader = new FileReader(baseFilePath);
-            FileReader testFileReader = new FileReader(testFilePath);
+            baseFileReader = new FileReader(baseFilePath);
+            testFileReader = new FileReader(testFilePath);
             BufferedReader baseBufferReader = new BufferedReader(baseFileReader);
             BufferedReader testBufferReader = new BufferedReader(testFileReader);
             String baseLine;
@@ -22,10 +25,14 @@ public class FileHelper {
                     sameLineCnt++;
                 }
             }
-            return sameLineCnt * 1.0 / totalLineCnt;
+            ans = sameLineCnt * 1.0 / totalLineCnt;
         } catch (Exception e) {
-            return -1;
+            ans = -1;
+        }finally {
+            baseFileReader.close();
+            testFileReader.close();
         }
+        return ans;
     }
 
     public static void extraWriteFile(String sourcePath, String destPath) throws IOException {
@@ -33,9 +40,11 @@ public class FileHelper {
         RandomAccessFile randomAccessFile = null;
         File destFile = new File(destPath);
         String destDirectoryPath = destFile.getParent();
-        File destDirectorFile = new File(destDirectoryPath);
-        if (!destDirectorFile.exists()) {
-            destDirectorFile.mkdirs();
+        if (destDirectoryPath != null) {
+            File destDirectorFile = new File(destDirectoryPath);
+            if (!destDirectorFile.exists()) {
+                destDirectorFile.mkdirs();
+            }
         }
         if (!destFile.exists()) {
             destFile.createNewFile();
@@ -64,6 +73,7 @@ public class FileHelper {
         while ((length = fileInputStream.read(buffer)) > 0) {
             System.out.write(buffer, 0, length);
         }
+        fileInputStream.close();
     }
 
     public static void deleteFile(String filePath) throws Exception {
@@ -71,14 +81,6 @@ public class FileHelper {
         if (!file.delete()) {
             throw new Exception();
         }
-    }
-
-    public static PrintStream getTempPrintStream() throws IOException {
-        File file = new File("tempPrintStream.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-        return new PrintStream(file);
     }
 
     public static void redirectPrintln(String s, String redirectPath, boolean type) throws IOException {//type==true为加写
@@ -103,9 +105,11 @@ public class FileHelper {
         OutputStream outputStream = null;
         File destFile = new File(destPath);
         String destDirectoryPath = destFile.getParent();
-        File destDirectorFile = new File(destDirectoryPath);
-        if (!destDirectorFile.exists()) {
-            destDirectorFile.mkdirs();
+        if (destDirectoryPath != null) {
+            File destDirectorFile = new File(destDirectoryPath);
+            if (!destDirectorFile.exists()) {
+                destDirectorFile.mkdirs();
+            }
         }
         if (!destFile.exists()) {
             destFile.createNewFile();

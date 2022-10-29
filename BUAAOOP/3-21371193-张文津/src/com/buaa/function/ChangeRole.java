@@ -34,6 +34,7 @@ public class ChangeRole extends Function {
                 } else {
                     System.out.println("change into Assistant success");
                 }
+                UserOperation.setCurrentCourse(UserOperation.getNoCourse());
                 UserOperation.changeRole();
             }
         }
