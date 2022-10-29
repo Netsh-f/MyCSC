@@ -1,0 +1,405 @@
+name: my_test
+data:
+  -
+    - register 20373252 Yixiao Li 20373252@buaa.edu.cn x12345678 x12345678
+    - register success
+  -
+    - register 19376054 Hongxi Zhou 19376054@buaa.edu.cn x12345678 x12345678
+    - register success
+  -
+    - register 10001 Xueping Shen 10001@buaa.edu.cn x12345678 x12345678
+    - register success
+  -
+    - register BY2215201 Kai Chengyuan akai@outlook.com z11111111 z11111111
+    - register success 
+  -
+    - login 10001 x12345678
+    - Hello Professor Shen~
+  -
+    - addCourse C2101 oop_autumn
+    - add course success
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - addAdmin 19376054
+    - add admin success
+  -
+    - logout
+    - Bye~
+  -
+    - login 19376054 x12345678
+    - Hello Hongxi~
+  -
+    - changeRole
+    - change into Assistant success
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - addStudent BY2215201 20373252
+    - add student success
+  -
+    - addTask T210101 Lesson1.txt     2022-10-23-19:00:00  2022-10-23-23:00:00   
+    - add task success
+  -
+    - listTask
+    - |
+      [ID:T210101] [Name:Lesson1.txt] [SubmissionStatus:0/2] [StartTime:2022-10-23-19:00:00] [EndTime:2022-10-23-23:00:00]
+  -
+    - openFile ./data/C2101/tasks/T210101/Lesson1.txt
+    - |
+      fn start() -> Result<(), Box<dyn Error>> {
+          let mut app = App::new();
+          app.add_system(hello_world.system());
+          app.run();
+          Ok(())
+      }
+  -
+    - listWare
+    - total 0 ware
+  -
+    - addWare W210104 Lesson.c
+    - ware file does not exist
+  -
+    - addWare W210101 Lesson2.md
+    - add ware success
+  -
+    - listWare    
+    - |
+      [ID:W210101] [Name:Lesson2.md]
+  -
+    - addWare W210101 Lesson1.txt
+    - add ware success
+  -
+    - listWare    
+    - |
+      [ID:W210101] [Name:Lesson1.txt]
+  -
+    - openFile      
+    - please input the path to open the file
+  -
+    - openFile <    
+    - please input the path to redirect the file
+  -
+    - openFile 1 <    
+    - please input the path to redirect the file
+  -
+    - openFile 1 1 1    
+    - arguments illegal
+  -
+    - openFile < ./data/C2101/wares/W210103_Lesson1.txt
+    - file open failed
+  -
+    - openFile ./data/C2101/wares/W210101_Lesson1.txt  
+    - |
+      fn start() -> Result<(), Box<dyn Error>> {
+          let mut app = App::new();
+          app.add_system(hello_world.system());
+          app.run();
+          Ok(())
+      }
+  -
+    - downloadFile 123123 W2102
+    - file not found
+  - 
+    - downloadFile 123123 W2102 > error.c
+  -
+    - openFile < error.c
+    - file not found
+  -
+    - downloadFile my.txt W210101
+    - |
+      fn start() -> Result<(), Box<dyn Error>> {
+          let mut app = App::new();
+          app.add_system(hello_world.system());
+          app.run();
+          Ok(())
+      }
+  -
+    - downloadFile my.txt W210101 >> error.c
+  -
+    - openFile error.c < my.txt
+    - |
+      file not found
+      fn start() -> Result<(), Box<dyn Error>> {
+          let mut app = App::new();
+          app.add_system(hello_world.system());
+          app.run();
+          Ok(())
+      }
+  -
+    - downloadFile >> ./error.c
+  -
+    - openFile < ./error.c
+    - |
+      file not found
+      fn start() -> Result<(), Box<dyn Error>> {
+          let mut app = App::new();
+          app.add_system(hello_world.system());
+          app.run();
+          Ok(())
+      }
+      arguments illegal
+  -
+    - downloadFile 1 1 1 1 1 >> ./error.c
+  -
+    - openFile < ./error.c
+    - |
+      file not found
+      fn start() -> Result<(), Box<dyn Error>> {
+          let mut app = App::new();
+          app.add_system(hello_world.system());
+          app.run();
+          Ok(())
+      }
+      arguments illegal
+      arguments illegal
+  -
+    - removeWare W210102
+    - ware not found
+  -
+    - removeWare W210101
+    - remove ware success
+  -
+    - listWare    
+    - total 0 ware
+  -
+    - openFile < ./data/C2101/wares/W210101_Lesson1.txt
+    - file open failed
+  -
+    - downloadFile ./my.txt W210101 
+    - file not found
+  -
+    - logout
+    - Bye~
+  -
+    - login BY2215201 z11111111
+    - Hello Kai~
+  -
+    - listCourse
+    - |
+      [ID:C2101] [Name:oop_autumn] [TeacherNum:1] [AssistantNum:1] [StudentNum:2]
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - submitTask ans.txt T210101
+    - |
+      submit success
+      your score is: None
+  -
+    - openFile < ./data/C2101/tasks/T210101/BY2215201.task
+    - |
+      T
+      F
+      B
+      B
+      C
+      hello_world
+      gg
+  -
+    - logout
+    - Bye~
+  -
+    - login  20373252 x12345678
+    - Hello Yixiao~
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - submitTask task.txt T210101
+    - |
+      submit success
+      your score is: None
+  -
+    - queryScore T210101
+    - |
+      total 1 result
+      [1] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:None]
+  -
+    - queryScore T210102 1
+    - permission denied
+  -
+    - queryScore T 1 1
+    - arguments illegal
+  -
+    - queryScore
+    - |
+      total 1 result
+      [1] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:None]
+  -
+    - logout
+    - Bye~
+  -
+    - login 19376054 x12345678
+    - Hello Hongxi~
+  -
+    - changeRole
+    - change into Assistant success
+  -
+    - queryScore
+    - no course selected
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - queryScore 20373252
+    - |
+      total 1 result
+      [1] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:None]
+  -
+    - queryScore T210101 20373252
+    - |
+      total 1 result
+      [1] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:None]
+  -
+    - queryScore 1 1 1 >
+    - arguments illegal
+  -
+    - addAnswer ans.txt T210101 <
+    - please input the path to redirect the file
+  -
+    - addAnswer T210101 <
+    - please input the path to redirect the file
+  -
+    - addAnswer ans.txt
+    - arguments illegal
+  -
+    - addAnswer ans.txt T210102
+    - task not found
+  -
+    - addAnswer ans.txt T210101
+    - add answer success
+  - 
+    - openFile < ./data/C2101/answers/T210101.ans
+    - |
+      T
+      F
+      B
+      B
+      C
+      hello_world
+      gg
+  -
+    - addAnswer T210101 < task.txt
+    - add answer success
+  -
+    - openFile ./data/C2101/answers/T210101.ans
+    - |
+      T
+      f
+      b
+      A
+      c
+      HeLlO_woRld
+      gDb
+  -
+    - addAnswer ans.txt T210101 < task.txt
+    - add answer success
+  -
+    - openFile < ./data/C2101/answers/T210101.ans
+    - |
+      T
+      F
+      B
+      B
+      C
+      hello_world
+      gg
+  -
+    - queryScore T210101
+    - |
+      total 2 results
+      [1] [ID:BY2215201] [Name:Chengyuan Kai] [Task_ID:T210101] [Score:100.0]
+      [2] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:71.4]
+  -
+    - queryScore
+    - |
+      total 2 results
+      [1] [ID:BY2215201] [Name:Chengyuan Kai] [Task_ID:T210101] [Score:100.0]
+      [2] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:71.4]
+  -
+    - queryScore T210101 19376110
+    - student not found
+  -
+    - queryScore 19376110 T210101 
+    - task not found
+  -
+    - queryScore CC114514
+    - student not found
+  -
+    - queryScore T210102
+    - task not found
+  -
+    - logout
+    - Bye~
+  -
+    - queryScore
+    - not logged in
+  -
+    - login  20373252 x12345678
+    - Hello Yixiao~
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - queryScore T210101
+    - |
+      total 1 result
+      [1] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:71.4]
+  -
+    - submitTask ans.txt T210101 < task.txt
+    - task already exists, do you want to overwrite it? (y/n)
+  -
+    - n
+    - submit canceled
+  -
+    - submitTask ans.txt T210101 < task.txt
+    - task already exists, do you want to overwrite it? (y/n)
+  -
+    - y
+    - |
+      submit success
+      your score is: 100.0
+  -
+    - queryScore
+    - |
+      total 1 result
+      [1] [ID:20373252] [Name:Li Yixiao] [Task_ID:T210101] [Score:100.0]
+  -
+    - openFile < ./data/C2101/tasks/T210101/20373252.task
+    - |
+      T
+      F
+      B
+      B
+      C
+      hello_world
+      gg
+  -
+    - listTask
+    - |
+      [ID:T210101] [Name:Lesson1.txt] [Status:done] [StartTime:2022-10-23-19:00:00] [EndTime:2022-10-23-23:00:00]
+  -
+    - logout
+    - Bye~
+  -
+    - login 19376054 x12345678
+    - Hello Hongxi~
+  -
+    - changeRole
+    - change into Assistant success
+  -
+    - selectCourse C2101
+    - select course success
+  -
+    - listTask
+    - |
+      [ID:T210101] [Name:Lesson1.txt] [SubmissionStatus:2/2] [StartTime:2022-10-23-19:00:00] [EndTime:2022-10-23-23:00:00]
+  -
+    - logout
+    - Bye~
+  -
+    - QUIT
+    - ----- Good Bye! -----    
