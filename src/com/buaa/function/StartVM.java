@@ -42,6 +42,7 @@ public class StartVM extends Function {
                 String cmd = scanner.nextLine();
                 while (!cmd.equals("EOF")) {
                     currentVM.addCmd(cmd);
+                    cmd = scanner.nextLine();
                 }
                 System.out.println("quit " + currentVM.getType());
             }
