@@ -1,5 +1,7 @@
 package com.buaa.data;
 
+import com.buaa.data.VM.VirtualMachine;
+
 import java.util.*;
 
 public class Course {
@@ -11,6 +13,23 @@ public class Course {
     private TreeMap<String, User> assistantTreeMap = new TreeMap<>();
     private TreeMap<String, Task> taskTreeMap = new TreeMap<>();
     private TreeMap<String, User> studentTreeMap = new TreeMap<>();
+    private ArrayList<VirtualMachine> VMList = new ArrayList<>();
+
+    public VirtualMachine getVM(int num) {
+        return VMList.get(num - 1);
+    }
+
+    public boolean isVMNumLegal(int num) {
+        return num <= VMList.size();
+    }
+
+    public void clearVM(int num) {
+        VMList.get(num - 1).clearCmd();//下标-1
+    }
+
+    public void addVM(VirtualMachine vm) {
+        VMList.add(vm);
+    }
 
     public TreeMap<String, User> getStudentTreeMap() {
         return studentTreeMap;

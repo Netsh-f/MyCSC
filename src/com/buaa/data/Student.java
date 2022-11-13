@@ -1,16 +1,27 @@
 package com.buaa.data;
 
+import com.buaa.data.VM.VirtualMachine;
 import com.buaa.main.UserOperation;
 
-import java.util.Comparator;
 import java.util.TreeMap;
 
 public class Student extends User {
     private final TreeMap<String, Course> studentCourseTreeMap = new TreeMap<>();
-//    private boolean assistant = false;
+    private final TreeMap<String, VirtualMachine> VMTreeMap = new TreeMap<>();
+
+    public VirtualMachine getVM(String courseId) {
+        return VMTreeMap.get(courseId);
+    }
+
+    public boolean isVMExist(String courseId) {
+        return VMTreeMap.containsKey(courseId);
+    }
+
+    public void setVM(String courseId, VirtualMachine vm) {
+        VMTreeMap.put(courseId, vm);
+    }
 
     public void setAssistant(boolean flag) {
-//        assistant = flag;
         if (flag) {
             super.setType("Assistant");
         } else {
@@ -21,10 +32,6 @@ public class Student extends User {
             }
         }
     }
-
-//    public boolean isAssistant() {
-//        return assistant;
-//    }
 
     public TreeMap<String, Course> getStudentCourseTreeMap() {
         return studentCourseTreeMap;

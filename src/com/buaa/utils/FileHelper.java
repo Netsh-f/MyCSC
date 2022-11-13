@@ -4,8 +4,37 @@ import java.io.*;
 
 public class FileHelper {
 
+    public static Object deserialize(String path) throws Exception {
+        File file = new File(path);
+        InputStream inputStream = new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        Object obj = objectInputStream.readObject();
+
+        inputStream.close();
+        objectInputStream.close();
+        return obj;
+    }
+
+    public static void serialize(Object obj, String path) throws Exception {
+        File file = new File(path);
+        OutputStream outputStream;
+        ObjectOutputStream objectOutputStream;
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        outputStream = new FileOutputStream(file);
+        objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(obj);
+
+        outputStream.close();
+        objectOutputStream.close();
+    }
+
     //返回两个文件的“相似度”，相同行数/base文件总行数
-    public static double compareFiles(String baseFilePath, String testFilePath) throws IOException{
+    public static double compareFiles(String baseFilePath, String testFilePath) throws IOException {
         FileReader baseFileReader = null;
         FileReader testFileReader = null;
         double ans;
@@ -28,7 +57,7 @@ public class FileHelper {
             ans = sameLineCnt * 1.0 / totalLineCnt;
         } catch (Exception e) {
             ans = -1;
-        }finally {
+        } finally {
             baseFileReader.close();
             testFileReader.close();
         }

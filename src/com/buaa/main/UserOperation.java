@@ -4,6 +4,7 @@ import com.buaa.data.Course;
 import com.buaa.data.Professor;
 import com.buaa.data.User;
 import com.buaa.function.*;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,6 +102,12 @@ public class UserOperation {
         cmdMap.put("submitTask", SubmitTask.getInstance());
         cmdMap.put("addAnswer", AddAnswer.getInstance());
         cmdMap.put("queryScore", QueryScore.getInstance());
+        cmdMap.put("requestVM", RequestVM.getInstance());
+        cmdMap.put("startVM", StartVM.getInstance());
+        cmdMap.put("clearVM", ClearVM.getInstance());
+        cmdMap.put("logVM", LogVM.getInstance());
+        cmdMap.put("uploadVM", UploadVM.getInstance());
+        cmdMap.put("downloadVM", DownloadVM.getInstance());
     }
 
     public static void command(String cmd, ArrayList<String> parameter) {
